@@ -7,9 +7,11 @@ import TopInside from "./TopInside.js"
 // Image Imports
 import topSvg from "../images/top.svg"
 import leftSvg from "../images/left.svg"
+import rightSvg from "../images/right.svg"
 import bottomSvg from "../images/bottom.svg"
 import inside from "../images/envelopeBackground.jpg"
 
+// Envelope sizing
 const envH = 11; // rem
 const envW = 15; // rem
 
@@ -18,12 +20,10 @@ const StyledEnvelope = styled.div`
   margin: auto;
   width: ${envW}rem;
   height: ${envH}rem;
-  border: 2px solid pink;
 `;
 
 // Ratio calculated from svg ratio and width
 const topH = envW * 25.84 / 40; // rem, 19.38
-// const topH = 19.3966; // rem
 
 const Top = styled.div`
   position: relative;
@@ -43,32 +43,14 @@ const topImgCommon = `
 
 const TopImg = styled.img`
   ${topImgCommon}
-
   filter: drop-shadow(0px 1px 2px rgb(0 0 0 / 0.4));
-
   transform-origin: 0 0;
 
   &:hover {
     transform: rotateX(180deg);
   }
-
   // visibility: hidden;
 `;
-
-// const TopImgInside = styled.img`
-//   ${topImgCommon}
-
-//   position: absolute;
-//   left: 0;
-//   top: -100%;
-
-//   transform: rotateX(180deg);
-//   transform-origin: 0 100%;
-
-//   ${TopImg}:hover + & {
-//     transform: rotateX(0deg);
-//   }
-// `;
 
 // Wrap the svg component in a div so the backface-visibility works
 const StyledContainer = styled.div`
@@ -95,15 +77,11 @@ const LeftImg = styled.img`
   top: 0;
   height: ${envH}rem;
   width: auto;
-  // transform: translateY(-${topH}rem)
   // visibility: hidden;
 `;
 
 const RightImg = styled(LeftImg)`
-  transform:
-    rotateY(180deg)
-    translateX(calc(-${envW}rem + 100%)
-  );
+  right: 0;
 `;
 
 const BottomImg = styled.img`
@@ -122,10 +100,10 @@ const InsideImg = styled.img`
   z-index: -1;
 `;
 
-const Envelope = () => {
+const Envelope = ({className}) => {
   return (
 
-    <StyledEnvelope>
+    <StyledEnvelope className={className}>
 
       <Top>
 
@@ -146,7 +124,7 @@ const Envelope = () => {
       />
 
       <RightImg
-        src={leftSvg}
+        src={rightSvg}
         alt="triangle with all three sides equal"
       />
 
