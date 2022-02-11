@@ -11,32 +11,28 @@ import rightSvg from "../images/right.svg"
 import bottomSvg from "../images/bottom.svg"
 import inside from "../images/envelopeBackground.jpg"
 
-// Envelope sizing
-const envH = 11; // rem
-const envW = 15; // rem
-
 const StyledEnvelope = styled.div`
   position: relative;
   margin: auto;
-  width: ${envW}rem;
-  height: ${envH}rem;
+  width: ${({envW}) => envW}rem;
+  height: ${({envH}) => envH}rem;
 `;
 
-// Ratio calculated from svg ratio and width
-const topH = envW * 25.84 / 40; // rem, 19.38
+// Envelope top hieght/width ratio (calculated from svg aspect ratio)
+const topHRatio = 25.84 / 40; // rem, 19.38
 
 const Top = styled.div`
   position: relative;
-  width: ${envW}rem;
-  height: ${topH}rem;
+  width: ${({envW}) => envW}rem;
+  height: ${({envW}) => envW * topHRatio}rem;
   // border: 2px solid black;
   z-index: 2;
 `;
 
 // Envelope top styling
 const topImgCommon = `
-  width: ${envW}rem;
-  height: ${topH}rem;
+  width: ${({envW}) => envW}rem;
+  height: ${({envW}) => envW * topHRatio}rem;
   transition: transform 0.8s;
   backface-visibility: hidden;
 `;
@@ -68,26 +64,27 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTopInside = styled(TopInside)`
-  width: ${envW}rem;
-  height: ${topH}rem;
+  width: ${({envW}) => envW}rem;
+  height: ${({envW}) => envW * topHRatio}rem;
 `;
 
 const LeftImg = styled.img`
   position: absolute;
   top: 0;
-  height: ${envH}rem;
+  height: ${({envH}) => envH}rem;
   width: auto;
   // visibility: hidden;
 `;
 
 const RightImg = styled(LeftImg)`
   right: 0;
+  height: ${({envH}) => envH}rem;
 `;
 
 const BottomImg = styled.img`
   position: absolute;
   bottom: 0;
-  width: ${envW}rem;
+  width: ${({envW}) => envW}rem;
   z-index: 1;
   filter: drop-shadow(0px -1px 2px rgb(0 0 0 / 0.4));
 `;
@@ -95,47 +92,57 @@ const BottomImg = styled.img`
 const InsideImg = styled.img`
   position: absolute;
   top: 0;
-  width: ${envW}rem;
-  height: ${envH}rem;
+  width: ${({envW}) => envW}rem;
+  height: ${({envH}) => envH}rem;
   z-index: -1;
 `;
 
-const Envelope = ({className}) => {
+const EnvelopeBack = ({className, envW, envH}) => {
+
   return (
 
-    <StyledEnvelope className={className}>
+    <StyledEnvelope
+      className={className}
+      envW={envW}
+      envH={envH}
+    >
 
-      <Top>
+      <Top envW={envW}>
 
         <TopImg
           src={topSvg}
-          alt="triangle with all three sides equal"
+          alt="Triangle emulating the back top of an envelope."
         />
 
         <StyledContainer>
-          <StyledTopInside href={inside} />
+          <StyledTopInside href={inside} envW={envW}/>
         </StyledContainer>
 
       </Top>
 
       <LeftImg
         src={leftSvg}
-        alt="triangle with all three sides equal"
+        alt="Tringle emulating the back left of an envelope."
+        envH={envH}
       />
 
       <RightImg
         src={rightSvg}
-        alt="triangle with all three sides equal"
+        alt="Triangle emulating the back right of an envelope."
+        envH={envH}
       />
 
       <BottomImg
         src={bottomSvg}
-        alt="triangle with all three sides equal"
+        alt="Triangle emulating the back bottom of an envelope."
+        envW={envW}
       />
 
       <InsideImg
         src={inside}
         alt="triangle with all three sides equal"
+        envW={envW}
+        envH={envH}
       />
 
     </StyledEnvelope>
@@ -143,4 +150,4 @@ const Envelope = ({className}) => {
   );
 }
 
-export default Envelope
+export default EnvelopeBack

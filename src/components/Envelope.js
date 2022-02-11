@@ -2,19 +2,22 @@ import React from "react"
 import styled from "styled-components"
 import EnvelopeBack from "../components/EnvelopeBack.js"
 
+// Envelope sizing
+const envW = 15; // rem
+const envH = envW * 11/15; // rem
 
 const Container = styled.div`
   position: relative;
-  height: 11rem;
-  width: 15rem;
+  height: ${envH}rem;
+  width: ${envW}rem;
   margin: auto;
   // border: 2px solid black;
 `;
 
 const EnvelopeFront = styled.div`
   background-color: green;
-  height: 11rem;
-  width: 15rem;
+  height: ${envH}rem;
+  width: ${envW}rem;
   margin: auto;
 
   position: absolute;
@@ -26,6 +29,7 @@ const EnvelopeFront = styled.div`
   &:hover {
     transform: rotateY(180deg);
   }
+  // visibility: hidden;
 `;
 
 const StyledEnvelopeBack = styled(EnvelopeBack)`
@@ -49,7 +53,7 @@ const Envelope = () => {
   return (
     <Container>
       <EnvelopeFront />
-      <StyledEnvelopeBack />
+      <StyledEnvelopeBack envW={envW} envH={envH}/>
     </Container>
   );
 
