@@ -1,9 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 
+// Component Imports
+import TopInside from "./TopInside.js"
+
 // Image Imports
 import topSvg from "../images/top.svg"
-import topInsideSvg from "../images/topInsideInv.svg"
 import leftSvg from "../images/left.svg"
 import bottomSvg from "../images/bottom.svg"
 import inside from "../images/envelopeBackground.jpg"
@@ -49,11 +51,28 @@ const TopImg = styled.img`
   &:hover {
     transform: rotateX(180deg);
   }
+
+  // visibility: hidden;
 `;
 
-const TopImgInside = styled.img`
-  ${topImgCommon}
+// const TopImgInside = styled.img`
+//   ${topImgCommon}
 
+//   position: absolute;
+//   left: 0;
+//   top: -100%;
+
+//   transform: rotateX(180deg);
+//   transform-origin: 0 100%;
+
+//   ${TopImg}:hover + & {
+//     transform: rotateX(0deg);
+//   }
+// `;
+
+// Wrap the svg component in a div so the backface-visibility works
+const StyledContainer = styled.div`
+  ${topImgCommon}
   position: absolute;
   left: 0;
   top: -100%;
@@ -64,6 +83,11 @@ const TopImgInside = styled.img`
   ${TopImg}:hover + & {
     transform: rotateX(0deg);
   }
+`;
+
+const StyledTopInside = styled(TopInside)`
+  width: ${envW}rem;
+  height: ${topH}rem;
 `;
 
 const LeftImg = styled.img`
@@ -101,46 +125,42 @@ const InsideImg = styled.img`
 const Envelope = () => {
   return (
 
-    <div class="outer">
-      <StyledEnvelope>
+    <StyledEnvelope>
 
-        <Top>
+      <Top>
 
-          <TopImg
-            src={topSvg}
-            alt="triangle with all three sides equal"
-          />
-
-          <TopImgInside
-            src={topInsideSvg}
-            alt="triangle with all three sides equal"
-          />
-
-        </Top>
-
-        <LeftImg
-          src={leftSvg}
+        <TopImg
+          src={topSvg}
           alt="triangle with all three sides equal"
         />
 
-        <RightImg
-          src={leftSvg}
-          alt="triangle with all three sides equal"
-        />
+        <StyledContainer>
+          <StyledTopInside href={inside} />
+        </StyledContainer>
 
-        <BottomImg
-          src={bottomSvg}
-          alt="triangle with all three sides equal"
-        />
+      </Top>
 
-        <InsideImg
-          src={inside}
-          alt="triangle with all three sides equal"
-        />
+      <LeftImg
+        src={leftSvg}
+        alt="triangle with all three sides equal"
+      />
 
-      </StyledEnvelope>
+      <RightImg
+        src={leftSvg}
+        alt="triangle with all three sides equal"
+      />
 
-    </div>
+      <BottomImg
+        src={bottomSvg}
+        alt="triangle with all three sides equal"
+      />
+
+      <InsideImg
+        src={inside}
+        alt="triangle with all three sides equal"
+      />
+
+    </StyledEnvelope>
 
   );
 }

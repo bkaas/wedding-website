@@ -1,0 +1,14 @@
+<svg viewBox="0 0 40 15" xmlns="http://www.w3.org/2000/svg" class="bottom">
+  <path fill="green" stroke="none" stroke-width="0.1"
+    d="M 0,15
+       h 40
+       a 4,4 0 0 0 -1,-3
+       l -11 -10
+       a 10,10 0 0 0 -5,-2
+       h -6
+       a 10,10 0 0 0 -5, 2
+       l -11 10
+       a 4,4 0 0 0 -1,3
+      "
+       />
+</svg>
