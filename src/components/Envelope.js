@@ -1,11 +1,15 @@
 import React from "react"
 import styled from "styled-components"
+
+// Image Imports
 import topSvg from "../images/top.svg"
 import topInsideSvg from "../images/topInsideInv.svg"
 import leftSvg from "../images/left.svg"
+import bottomSvg from "../images/bottom.svg"
+import inside from "../images/envelopeBackground.jpg"
 
-const envH = 25; // rem
-const envW = 30; // rem
+const envH = 11; // rem
+const envW = 15; // rem
 
 const StyledEnvelope = styled.div`
   position: relative;
@@ -15,22 +19,21 @@ const StyledEnvelope = styled.div`
   border: 2px solid pink;
 `;
 
-const topW = envW; // rem, chosen arbitrarily
 // Ratio calculated from svg ratio and width
-const topH = topW * 25.84 / 40; // rem, 19.38
+const topH = envW * 25.84 / 40; // rem, 19.38
 // const topH = 19.3966; // rem
 
 const Top = styled.div`
   position: relative;
-  width: 30rem;
+  width: ${envW}rem;
   height: ${topH}rem;
   // border: 2px solid black;
-  z-index: 1;
+  z-index: 2;
 `;
 
 // Envelope top styling
 const topImgCommon = `
-  width: 30rem;
+  width: ${envW}rem;
   height: ${topH}rem;
   transition: transform 0.8s;
   backface-visibility: hidden;
@@ -79,6 +82,21 @@ const RightImg = styled(LeftImg)`
   );
 `;
 
+const BottomImg = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: ${envW}rem;
+  z-index: 1;
+  filter: drop-shadow(0px -1px 2px rgb(0 0 0 / 0.4));
+`;
+
+const InsideImg = styled.img`
+  position: absolute;
+  top: 0;
+  width: ${envW}rem;
+  height: ${envH}rem;
+  z-index: -1;
+`;
 
 const Envelope = () => {
   return (
@@ -110,6 +128,15 @@ const Envelope = () => {
           alt="triangle with all three sides equal"
         />
 
+        <BottomImg
+          src={bottomSvg}
+          alt="triangle with all three sides equal"
+        />
+
+        <InsideImg
+          src={inside}
+          alt="triangle with all three sides equal"
+        />
 
       </StyledEnvelope>
 
