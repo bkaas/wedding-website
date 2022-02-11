@@ -1,8 +1,9 @@
-<svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 20 30" xmlns="http://www.w3.org/2000/svg">
   <path fill="green" stroke="none" stroke-width="0.5"
     d="M 0,30
        v -30
        l 20, 20
+       l -20, 10
       "
    />
 </svg>
