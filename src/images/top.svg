@@ -1,0 +1,25 @@
+<svg viewBox="0 0 40 25.84" xmlns="http://www.w3.org/2000/svg">
+  <path fill="green" stroke="none" stroke-width="0.5"
+    d="M 0,0
+       h 40
+       a 5,5 0 0 1 -1,3
+       l -17, 22
+       a 2.8,2.8 0 0 1 -4,0
+       l -17, -22
+       a 5,5 0 0 1 -1,-3
+      "
+       />
+</svg>
+
+<!-- <svg viewBox="30 35 40 30" xmlns="http://www.w3.org/2000/svg">
+  <path fill="green" stroke="none" stroke-width="0.5"
+    d="M 30,35
+       h 40
+       a 5,5 0 0 1 -1,3
+       l -17, 22
+       a 2.8,2.8 0 0 1 -4,0
+       l -17, -22
+       a 5,5 0 0 1 -1,-3
+      "
+       />
+</svg> -->
