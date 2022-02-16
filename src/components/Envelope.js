@@ -7,8 +7,10 @@ const Container = styled.div`
   position: relative;
   height: ${({envH}) => envH}rem;
   width: ${({envW}) => envW}rem;
+  // max-width: 80vw;
   margin: auto;
   // border: 2px solid black;
+  filter: drop-shadow(5px 5px 8px rgb(0 0 0 / 0.4));
 `;
 
 const commonRules = `
@@ -45,10 +47,10 @@ const StyledEnvelopeBack = styled(EnvelopeBack)`
   // visibility: hidden;
 `;
 
-const Envelope = ({envW, envH, name}) => {
+const Envelope = ({className, envW, envH, name}) => {
 
   return (
-    <Container envW={envW} envH={envH}>
+    <Container envW={envW} envH={envH} className={className}>
       <StyledEnvelopeFront name={name}/>
       <StyledEnvelopeBack envW={envW} envH={envH}/>
     </Container>

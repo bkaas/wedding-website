@@ -8,9 +8,10 @@ import mapleLeaf from "../images/mapleLeaf.png"
 
 const StyledEnvelopeFront = styled.div`
   background-color: green;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
+  // display: flex;
+  // flex-flow: column wrap;
+  // justify-content: center;
+  position: relative;
 `;
 
 const Names = styled.p`
@@ -19,6 +20,9 @@ const Names = styled.p`
   font-size: 1.5em;
   margin: 5%;
   white-space: pre-line;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 // Wrapper to allow putting the maple leaf in the stamp image
