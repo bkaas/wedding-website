@@ -22,7 +22,7 @@ const StyledEnvelope = styled(Envelope)`
   flex: 0 0 ${envH}rem;
 `;
 
-const SaveTheDate = () => {
+const SaveTheDatePage = () => {
 
   return (
     <StyledMain>
@@ -34,4 +34,4 @@ const SaveTheDate = () => {
 
 }
 
-export default SaveTheDate
+export default SaveTheDatePage
