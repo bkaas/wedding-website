@@ -6,9 +6,6 @@ import Envelope from "../components/Envelope.js"
 const envW = 20; // rem
 const envH = envW * 11/15; // rem
 
-// Envelope addressees
-const name = "Brendan Kaas \nand\n Jacqueline Fossenier";
-
 // Centre envelope on the screen
 const StyledMain = styled.main`
   display: flex;
@@ -22,7 +19,7 @@ const StyledEnvelope = styled(Envelope)`
   flex: 0 0 ${envH}rem;
 `;
 
-const SaveTheDatePage = () => {
+const SaveTheDate = ({name}) => {
 
   return (
     <StyledMain>
@@ -34,4 +31,4 @@ const SaveTheDatePage = () => {
 
 }
 
-export default SaveTheDatePage
+export default SaveTheDate
