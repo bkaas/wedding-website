@@ -19,13 +19,13 @@ const StyledEnvelope = styled(Envelope)`
   flex: 0 0 ${envH}rem;
 `;
 
-const SaveTheDate = ({name}) => {
+const SaveTheDate = ({ pageContext }) => {
 
   return (
     <StyledMain>
       <title>Save The Date Page</title>
       <h1>Save The Date!</h1>
-      <StyledEnvelope envW={envW} envH={envH} name={name} />
+      <StyledEnvelope envW={envW} envH={envH} name={pageContext.name} />
     </StyledMain>
   );
 
