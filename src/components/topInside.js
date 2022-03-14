@@ -1,12 +1,12 @@
 import React from "react"
 
-const TopInside = ({href, className}) => {
+const TopInside = ({href, className, color}) => {
   return(
 
     <svg viewBox="0 0 40 25.84" xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <path fill="green" stroke="none" stroke-width="0.5"
+      <path fill={color} stroke="none" stroke-width="0.5"
         d="M 35,25.84
            a 5,5 0 0 0 -1,-3
            l -12, -17
@@ -24,9 +24,9 @@ const TopInside = ({href, className}) => {
       />
 
        <defs>
-        <pattern id="img1" patternUnits="userSpaceOnUse" width="20" height="20"
+        <pattern id="img1" patternUnits="userSpaceOnUse" width="20" height="28"
           viewBox="0 0 20 20">
-          <image href={href} x="0" y="0" width="20" height="20" />
+          <image href={href} x="0" y="0" width="45" height="30"/>
         </pattern>
       </defs>
 

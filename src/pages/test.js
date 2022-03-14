@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import SaveTheDate from "../templates/SaveTheDate.js"
+import GlobalStyle from "../components/GlobalStyles.js"
 
 // Envelope addressees
 const name = "Brendan Kaas \nand\n Jacqueline Fossenier";
@@ -28,7 +29,10 @@ const TestPage = ({data}) => {
     }, "");
 
   return (
-    <SaveTheDate pageContext={{name: names}} />
+    <>
+      <GlobalStyle />
+      <SaveTheDate pageContext={{name: names}} />
+    </>
   );
 }
 

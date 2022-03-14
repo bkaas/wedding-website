@@ -10,7 +10,7 @@ import topSvg from "../images/top.svg"
 import leftSvg from "../images/left.svg"
 import rightSvg from "../images/right.svg"
 import bottomSvg from "../images/bottom.svg"
-import inside from "../images/envelopeBackground.jpg"
+import inside from "../images/envBackground.jpg"
 
 const StyledEnvelope = styled.div`
   position: relative;
@@ -141,7 +141,7 @@ const removeCard = (envH) => keyframes`
 
   50% {
     /* Rotate Card */
-    transform: translateY(-${envH}rem) rotate(0.25turn)
+    transform: translateY(-${envH}rem) rotate(0.25turn);
   }
 
   100% {
@@ -156,7 +156,8 @@ const StyledSaveTheDateCard = styled(SaveTheDateCard)`
   top: 2.5%;
   right: 2.5%;
   width: 95%;
-  height: 95%;
+  // height: 95%;
+  height: auto;
   z-index: 1;
 
   animation-name: ${({envH}) => removeCard(envH)};
@@ -165,7 +166,7 @@ const StyledSaveTheDateCard = styled(SaveTheDateCard)`
   animation-fill-mode: forwards;
 `;
 
-const EnvelopeBack = ({className, envW, envH, tEnvOpen, tCardOpen}) => {
+const EnvelopeBack = ({className, envW, envH, tEnvOpen, tCardOpen, color}) => {
 
   return (
 
@@ -185,7 +186,7 @@ const EnvelopeBack = ({className, envW, envH, tEnvOpen, tCardOpen}) => {
         />
 
         <StyledContainer envW={envW} tEnvOpen={tEnvOpen}>
-          <StyledTopInside href={inside} envW={envW}/>
+          <StyledTopInside href={inside} envW={envW} color={color}/>
         </StyledContainer>
 
       </Top>

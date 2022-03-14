@@ -12,6 +12,9 @@ const tEnvFlip   = {duration:   3, delay: sumObj(tEnvAppear)};
 const tEnvOpen   = {duration: 2.5, delay: sumObj(tEnvFlip)};
 const tCardOpen  = {duration:   5, delay: sumObj(tEnvOpen)};
 
+// Envelope Colour
+const color = `HSL(207, 7%, 60%)`;
+
 // Define appearance effect
 const envAppear = keyframes`
   from {
@@ -68,6 +71,7 @@ const StyledEnvelopeFront = styled(EnvelopeFront)`
   height: 100%;
   width: 100%;
   animation-name: ${envFlip(0)};
+  background-color: ${({color}) => color};
 
   /* Debug */
   // visibility: hidden;
@@ -92,9 +96,13 @@ const Envelope = ({className, envW, envH, name}) => {
 
   return (
     <Container envW={envW} envH={envH} className={className}>
-      <StyledEnvelopeFront name={name}/>
+      <StyledEnvelopeFront name={name} color={color}/>
       <StyledEnvelopeBack
-        envW={envW} envH={envH} tEnvOpen={tEnvOpen} tCardOpen={tCardOpen}
+        envW={envW}
+        envH={envH}
+        tEnvOpen={tEnvOpen}
+        tCardOpen={tCardOpen}
+        color={color}
       />
     </Container>
   );

@@ -1,5 +1,5 @@
 <svg viewBox="0 0 20 30" xmlns="http://www.w3.org/2000/svg">
-  <path fill="green" stroke="none" stroke-width="0.5"
+  <path fill="HSL(207, 7%, 60%)" stroke="none" stroke-width="0.5"
     d="M 0,30
        v -30
        l 20, 20

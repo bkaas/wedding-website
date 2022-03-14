@@ -2,12 +2,12 @@ import React from "react"
 import styled from "styled-components"
 
 import stampPic from "../images/beautifulCouple.jpg"
-import mapleLeaf from "../images/mapleLeaf.png"
+import mapleLeaf from "../images/mapleLeafTransparent.png"
 
 // const text = "Brendan and Jacqueline";
 
 const StyledEnvelopeFront = styled.div`
-  background-color: green;
+  // background-color: green;
   // display: flex;
   // flex-flow: column wrap;
   // justify-content: center;
@@ -17,7 +17,7 @@ const StyledEnvelopeFront = styled.div`
 const Names = styled.p`
   text-align: center;
   font-family: "Brush Script MT", cursive;
-  font-size: 1.5em;
+  font-size: 2em;
   margin: 5%;
   white-space: pre-line;
   position: relative;
@@ -40,7 +40,7 @@ const Stamp = styled.img`
   height: auto;
 
   /* Fun Border */
-  background-image: radial-gradient(#bbb 50%, green 50%);
+  background-image: radial-gradient(#bbb 50%, ${({color}) => color} 50%);
   background-repeat: repeat;
   background-position: 8px 0px;
   background-size: 8px 7.3px;
@@ -53,13 +53,13 @@ const MapleLeaf = styled.img`
   position: absolute;
   top: 11%;
   left: 8%;
-  width: 20%;
+  width: 30%;
   height: auto;
 
   background-color: transparent;
 `;
 
-const EnvelopeFront = ({className, name}) => {
+const EnvelopeFront = ({className, name, color}) => {
 
   return(
 
@@ -68,7 +68,7 @@ const EnvelopeFront = ({className, name}) => {
       <Names> {name} </Names>
 
       <StampWrapper>
-        <Stamp src={stampPic} alt="Picture of the beautiful couple" />
+        <Stamp src={stampPic} alt="Picture of the beautiful couple" color={color} />
         <MapleLeaf src={mapleLeaf} alt="Picture of a maple leaf" />
       </StampWrapper>
 
