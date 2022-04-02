@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
-import stampPic from "../images/beautifulCouple.jpg"
-import mapleLeaf from "../images/mapleLeafTransparent.png"
+import stampPic from "../../images/beautifulCouple.jpg"
+import mapleLeaf from "../../images/mapleLeafTransparent.png"
 
 // const text = "Brendan and Jacqueline";
 

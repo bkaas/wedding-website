@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Envelope from "../components/Envelope.js"
+import Envelope from "../components/Envelope/Envelope.js"
 
 import siteBackground from "../images/siteBackground_2.png"
 

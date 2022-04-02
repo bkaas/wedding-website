@@ -1,7 +1,7 @@
 import React from "react"
 import styled, {keyframes} from "styled-components"
-import EnvelopeBack from "../components/EnvelopeBack.js"
-import EnvelopeFront from "../components/EnvelopeFront.js"
+import EnvelopeBack from "./EnvelopeBack.js"
+import EnvelopeFront from "./EnvelopeFront.js"
 
 // Set animation durations and delays
 // Run each animation sequentially, so add the duration

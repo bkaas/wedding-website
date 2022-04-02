@@ -3,14 +3,14 @@ import styled, {keyframes} from "styled-components"
 
 // Component Imports
 import TopInside from "./TopInside.js"
-import SaveTheDateCard from "./SaveTheDateCard.js"
+import SaveTheDateCard from "../SaveTheDateCard.js"
 
 // Image Imports
-import topSvg from "../images/top.svg"
-import leftSvg from "../images/left.svg"
-import rightSvg from "../images/right.svg"
-import bottomSvg from "../images/bottom.svg"
-import inside from "../images/envBackground.jpg"
+import topSvg from "../../images/top.svg"
+import leftSvg from "../../images/left.svg"
+import rightSvg from "../../images/right.svg"
+import bottomSvg from "../../images/bottom.svg"
+import inside from "../../images/envBackground.jpg"
 
 const StyledEnvelope = styled.div`
   position: relative;
