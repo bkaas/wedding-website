@@ -2,6 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import GlobalStyle from "../GlobalStyles.js"
 
+// Header / footer images
+import headerImg from "../../images/RunnerHeader001.png"
+import footerImg from "../../images/RunnerFooter001.png"
+
 import siteBackground from "../../images/siteBackground_2.png"
 
 const Background = styled.div`
@@ -15,8 +19,18 @@ const StyledMain = styled.main`
 `;
 
 const Runner = styled.div`
-  max-width: 500px;
+  max-width: 80rem;
   background-color: white;
+  flex: 1 1;
+`;
+
+const RunnerHeader = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+const RunnerFooter = styled(RunnerHeader)`
+  transform: rotateX(180deg);
 `;
 
 const Layout = ({children}) => {
@@ -25,7 +39,9 @@ const Layout = ({children}) => {
       <GlobalStyle />
       <StyledMain>
         <Runner>
-          {children}
+          <RunnerHeader src={headerImg} alt="Nice Flowers" />
+            {children}
+          <RunnerFooter src={footerImg} alt="Nice Flowers" />
         </Runner>
       </StyledMain>
     </Background>

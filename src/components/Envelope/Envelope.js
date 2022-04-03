@@ -8,7 +8,8 @@ import EnvelopeFront from "./EnvelopeFront.js"
 // and delay together to use for the next animation's delay
 const sumObj = obj => Object.values(obj).reduce((a, b) => a + b); // add the values of an object
 const tEnvAppear = {duration: 2.5, delay: 0.5};
-const tEnvFlip   = {duration:   3, delay: sumObj(tEnvAppear)};
+// const tEnvFlip   = {duration:   3, delay: 120}; // debug
+const tEnvFlip   = {duration:   3, delay: sumObj(tEnvAppear) + 3}; // Delay longer on the front
 const tEnvOpen   = {duration: 2.5, delay: sumObj(tEnvFlip)};
 const tCardOpen  = {duration:   5, delay: sumObj(tEnvOpen)};
 

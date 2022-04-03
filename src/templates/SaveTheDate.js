@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Envelope from "../components/Envelope/Envelope.js"
+import GlobalStyle from "../components/GlobalStyles.js"
 
 import siteBackground from "../images/siteBackground_2.png"
 
@@ -26,6 +27,7 @@ const SaveTheDate = ({ pageContext }) => {
 
   return (
     <StyledMain>
+      <GlobalStyle />
       <title>Save The Date Page</title>
       <StyledEnvelope envW={envW} envH={envH} name={pageContext.name} />
     </StyledMain>

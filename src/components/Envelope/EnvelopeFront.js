@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-import stampPic from "../../images/beautifulCouple.jpg"
-import mapleLeaf from "../../images/mapleLeafTransparent.png"
+import FontStyles from "../../fonts/FontStyles.js"
+
+import stampPic from "../../images/stamp.png"
 
 // const text = "Brendan and Jacqueline";
 
@@ -16,47 +17,24 @@ const StyledEnvelopeFront = styled.div`
 
 const Names = styled.p`
   text-align: center;
-  font-family: "Brush Script MT", cursive;
+  font-family: "Pinyon Script", "Brush Script MT", cursive;
+  font-weight: bold;
   font-size: 2em;
   margin: 5%;
   white-space: pre-line;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-`;
-
-// Wrapper to allow putting the maple leaf in the stamp image
-const StampWrapper = styled.div`
-  position: absolute;
-  display: block;
-  right: 5%;
-  top: 5%;
-  width: 20%;
-  height: auto;
+  color: black;
 `;
 
 const Stamp = styled.img`
-  width: 100%;
-  height: auto;
-
-  /* Fun Border */
-  background-image: radial-gradient(#bbb 50%, ${({color}) => color} 50%);
-  background-repeat: repeat;
-  background-position: 8px 0px;
-  background-size: 8px 7.3px;
-
-  /* Spacing */
-  padding: 4px;
-`;
-
-const MapleLeaf = styled.img`
   position: absolute;
-  top: 11%;
-  left: 8%;
-  width: 30%;
+  display: block;
+  right: 4%;
+  top: 5%;
+  width: 20%;
   height: auto;
-
-  background-color: transparent;
 `;
 
 const EnvelopeFront = ({className, name, color}) => {
@@ -65,12 +43,11 @@ const EnvelopeFront = ({className, name, color}) => {
 
     <StyledEnvelopeFront className={className}>
 
+      <FontStyles />
+
       <Names> {name} </Names>
 
-      <StampWrapper>
-        <Stamp src={stampPic} alt="Picture of the beautiful couple" color={color} />
-        <MapleLeaf src={mapleLeaf} alt="Picture of a maple leaf" />
-      </StampWrapper>
+      <Stamp src={stampPic} alt="Stamp with an image of the beautiful couple" />
 
     </StyledEnvelopeFront>
 
