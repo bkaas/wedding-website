@@ -16,13 +16,5 @@ module.exports = {
 
   plugins: [
     "gatsby-plugin-styled-components",
-
-    {
-      resolve: "gatsby-source-pg",
-      options: {
-        connectionString: connectionString,
-        schema: "public",
-      }
-    }
   ]
 };
