@@ -1,17 +1,8 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-
-const connectionString = `postgres://\
-${process.env.POSTGRES_USER}:\
-${process.env.POSTGRES_PASSWORD}@\
-${process.env.POSTGRES_HOST}/\
-${process.env.POSTGRES_DB}\
-`;
+require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.jacquelineandbrendanwedding.info`
   },
 
   plugins: [

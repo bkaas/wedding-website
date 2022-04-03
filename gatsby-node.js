@@ -1,8 +1,6 @@
 const md5 = require('js-md5');
 const path = require("path");
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
+require("dotenv").config();
 const { MyGoogleApi } = require("./src/util/myGoogleApi.js");
 
 const RANGE = "'Card Invites'!A2:C3";
