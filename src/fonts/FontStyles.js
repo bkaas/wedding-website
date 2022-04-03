@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import GoudyOS from "../fonts/goudy-old-style/GOUDOS.ttf"
-import Perpetua from "../fonts/Perpetua-Titling-MT/PERTILI.ttf"
-import Pinyon from "../fonts/Pinyon-Script-Font/PinyonScript-Regular.ttf"
+import GoudyOS from "./goudy-old-style/GOUDOS.ttf"
+import Perpetua from "./Perpetua-Titling-MT/PERTILI.ttf"
+import Pinyon from "./Pinyon-Script-Font/PinyonScript-Regular.ttf"
 
 const FontStyles = createGlobalStyle`
 
