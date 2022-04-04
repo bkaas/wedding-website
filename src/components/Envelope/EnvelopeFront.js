@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import FontStyles from "../../fonts/FontStyles.js"
 
-import stampPic from "../../images/stamp.png"
+import stampPic from "../../images/stampSmall.png"
 
 // const text = "Brendan and Jacqueline";
 

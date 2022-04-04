@@ -6,7 +6,7 @@ import GlobalStyle from "../components/GlobalStyles.js"
 import siteBackground from "../images/siteBackground_2.png"
 
 // Envelope sizing
-const envW = 20; // rem
+const envW = 25; // rem
 const envH = envW * 11/15; // rem
 
 // Centre envelope on the screen
@@ -23,6 +23,16 @@ const StyledEnvelope = styled(Envelope)`
   flex: 0 0 auto;
   width: ${envW}rem;
   height: ${envH}rem;
+
+  @media (max-width: 768px) {
+    /* Placeholder */
+  }
+
+  @media (max-width: 640px) {
+    width: ${envW / 1.25}rem;
+    height: ${envH / 1.25}rem;
+  }
+
 `;
 
 const SaveTheDate = ({ pageContext }) => {

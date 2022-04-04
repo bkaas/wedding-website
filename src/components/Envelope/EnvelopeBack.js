@@ -147,7 +147,7 @@ const removeCard = keyframes`
 
   100% {
     /* Move card in front of the envelope and enlarge. 70% chosen by eye */
-    transform: translateY(-100%) rotate(0.25turn) translateX(70%) scale(1);
+    transform: translateY(-100%) rotate(0.25turn) translateX(75%) scale(1);
     z-index: 4;
   }
 `;
