@@ -6,7 +6,7 @@ import GlobalStyle from "../components/GlobalStyles.js"
 import siteBackground from "../images/siteBackground_2.png"
 
 // Envelope sizing
-const envW = 30; // rem
+const envW = 20; // rem
 const envH = envW * 11/15; // rem
 
 // Centre envelope on the screen
@@ -20,7 +20,9 @@ const StyledMain = styled.main`
 `;
 
 const StyledEnvelope = styled(Envelope)`
-  flex: 0 0 ${envH}rem;
+  flex: 0 0 auto;
+  width: ${envW}rem;
+  height: ${envH}rem;
 `;
 
 const SaveTheDate = ({ pageContext }) => {
@@ -29,7 +31,7 @@ const SaveTheDate = ({ pageContext }) => {
     <StyledMain>
       <GlobalStyle />
       <title>Save The Date Page</title>
-      <StyledEnvelope envW={envW} envH={envH} name={pageContext.name} />
+      <StyledEnvelope name={pageContext.name} />
     </StyledMain>
   );
 

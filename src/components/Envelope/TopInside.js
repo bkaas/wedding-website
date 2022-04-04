@@ -6,7 +6,7 @@ const TopInside = ({href, className, color}) => {
     <svg viewBox="0 0 40 25.84" xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <path fill={color} stroke="none" stroke-width="0.5"
+      <path fill={color} stroke="none" strokeWidth="0.5"
         d="M 35,25.84
            a 5,5 0 0 0 -1,-3
            l -12, -17
@@ -38,7 +38,7 @@ const TopInside = ({href, className, color}) => {
          l -12, 17
          a 5,5 0 0 0 -1,3
          h 30
-         a 5,5 0 0 0
+         a 5,5 0 0 0 0,0
         "
       />
     </svg>

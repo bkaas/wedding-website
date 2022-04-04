@@ -15,12 +15,9 @@ import inside from "../../images/envBackground.jpg"
 const StyledEnvelope = styled.div`
   position: relative;
   margin: auto;
-  width: ${({envW}) => envW}rem;
-  height: ${({envH}) => envH}rem;
+  width: 100%;
+  height: 100%
 `;
-
-// Envelope top hieght/width ratio (calculated from svg aspect ratio)
-const topHRatio = 25.84 / 40; // rem, 19.38
 
 // Drop the envelope top behind the card inside once it's opened
 const disappear = keyframes`
@@ -31,9 +28,10 @@ const disappear = keyframes`
 
 const Top = styled.div`
   position: relative;
-  width: ${({envW}) => envW}rem;
-  height: ${({envW}) => envW * topHRatio}rem;
-  // border: 2px solid black;
+  width: 100%;
+  /* Defining the top fold height as a percentage of the envelope height */
+  height: calc(100% * 0.881);
+  // border: 2px solid black; /* Debug */
 
   z-index: 4;
 
@@ -51,14 +49,12 @@ const envOpen = (start) => keyframes`
 
   to {
     transform: rotateX(${180 - start}deg);
-    // z-index: 1;
   }
 `;
 
-// Envelope top styling
-const topImgCommon = (envW, duration, delay) => `
-  width: ${envW}rem;
-  height: ${envW * topHRatio}rem;
+// Envelope top styling common to the outside and inside of the top fold
+const topImgCommon = (duration, delay) => `
+  width: 100%;
   transition: transform 0.8s;
   backface-visibility: hidden;
 
@@ -67,13 +63,15 @@ const topImgCommon = (envW, duration, delay) => `
   animation-fill-mode: forwards;
 `;
 
-const TopImg = styled.img`
-  ${({envW, tEnvOpen}) => topImgCommon(envW, tEnvOpen["duration"], tEnvOpen["delay"])};
+const TopOutside = styled.img`
+  ${({tEnvOpen}) => topImgCommon(tEnvOpen["duration"], tEnvOpen["delay"])};
   filter: drop-shadow(0px 1px 2px rgb(0 0 0 / 0.4));
   transform-origin: 0 0;
+  height: auto;
 
   animation-name: ${envOpen(0)};
 
+  /* Old debug */
   // &:hover {
   //   transform: rotateX(180deg);
   // }
@@ -81,8 +79,9 @@ const TopImg = styled.img`
 `;
 
 // Wrap the svg component in a div so the backface-visibility works
-const StyledContainer = styled.div`
-  ${({envW, tEnvOpen}) => topImgCommon(envW, tEnvOpen["duration"], tEnvOpen["delay"])};
+const TopInsideContainer = styled.div`
+  ${({tEnvOpen}) => topImgCommon(tEnvOpen["duration"], tEnvOpen["delay"])};
+  height: 100%;
   position: absolute;
   left: 0;
   top: -100%;
@@ -92,34 +91,34 @@ const StyledContainer = styled.div`
 
   animation-name: ${envOpen(180)};
 
-  // ${TopImg}:hover + & {
+  /* Old debug */
+  // ${TopOutside}:hover + & {
   //   transform: rotateX(0deg);
   // }
 `;
 
 const StyledTopInside = styled(TopInside)`
-  width: ${({envW}) => envW}rem;
-  height: ${({envW}) => envW * topHRatio}rem;
+  width: 100%;
+  height: 100%; /* related to the black line at the top fold */
 `;
 
 const LeftImg = styled.img`
   position: absolute;
   top: 0;
-  height: ${({envH}) => envH}rem;
+  height: 100%;
   width: auto;
-  // visibility: hidden;
   z-index: 2;
 `;
 
 const RightImg = styled(LeftImg)`
   right: 0;
-  height: ${({envH}) => envH}rem;
 `;
 
 const BottomImg = styled.img`
   position: absolute;
   bottom: 0;
-  width: ${({envW}) => envW}rem;
+  width: 100%;
+  height: auto;
   z-index: 3;
   filter: drop-shadow(0px -1px 2px rgb(0 0 0 / 0.4));
 `;
@@ -127,96 +126,91 @@ const BottomImg = styled.img`
 const InsideImg = styled.img`
   position: absolute;
   top: 0;
-  width: ${({envW}) => envW}rem;
-  height: ${({envH}) => envH}rem;
+  width: 100%;
+  height: 100%;
   z-index: -1;
 `;
 
 // Move card animation
-const removeCard = (envH) => keyframes`
+const removeCard = keyframes`
   25% {
     /* Remove card from envelope */
-    transform: translateY(-${envH}rem);
+    transform: scale(calc(1 / 1.5)) translateY(-100%);
+    z-index: 1;
   }
 
   50% {
     /* Rotate Card */
-    transform: translateY(-${envH}rem) rotate(0.25turn);
+    transform: scale(calc(1 / 1.5)) translateY(-100%) rotate(0.25turn);
+    z-index: 4;
   }
 
   100% {
-    /* Move card in front of the envelope and enlarge */
+    /* Move card in front of the envelope and enlarge. 70% chosen by eye */
+    transform: translateY(-100%) rotate(0.25turn) translateX(70%) scale(1);
     z-index: 4;
-    transform: translateY(-${envH}rem) rotate(0.25turn) translateX(${envH}rem) scale(1.5);
   }
 `;
 
 const StyledSaveTheDateCard = styled(SaveTheDateCard)`
   position: absolute;
-  top: 2.5%;
-  right: 2.5%;
-  width: 95%;
-  // height: 95%;
+  top: -23%; /* emperically determined */
+  left: -21.25%; /* 95% width, 2.5% gap on each side * 1.5 */
+
+  /* Import the image larger to anticipate the upscale.
+  Upscaling caused the image to degrade */
+  width: 142.5%;
   height: auto;
+  transform: scale(calc(1 / 1.5)); /* Scale down first to maintain image quality */
   z-index: 1;
 
-  animation-name: ${({envH}) => removeCard(envH)};
+  animation-name: ${removeCard};
   animation-duration: ${({tCardOpen}) => tCardOpen["duration"]}s;
   animation-delay: ${({tCardOpen}) => tCardOpen["delay"]}s;
   animation-fill-mode: forwards;
 `;
 
-const EnvelopeBack = ({className, envW, envH, tEnvOpen, tCardOpen, color}) => {
+const EnvelopeBack = ({className, tEnvOpen, tCardOpen, color}) => {
 
   return (
 
-    <StyledEnvelope
-      className={className}
-      envW={envW}
-      envH={envH}
-    >
+    <StyledEnvelope className={className}>
 
-      <Top envW={envW} tEnvOpen={tEnvOpen}>
+      <Top tEnvOpen={tEnvOpen}>
 
-        <TopImg
+        <TopOutside
           src={topSvg}
-          alt="Triangle emulating the back top of an envelope."
-          envW={envW}
+          alt="Triangle emulating the top outside of an envelope."
           tEnvOpen={tEnvOpen}
         />
 
-        <StyledContainer envW={envW} tEnvOpen={tEnvOpen}>
-          <StyledTopInside href={inside} envW={envW} color={color}/>
-        </StyledContainer>
+        <TopInsideContainer tEnvOpen={tEnvOpen}>
+          <StyledTopInside href={inside} color={color}/>
+        </TopInsideContainer>
 
       </Top>
 
       <LeftImg
         src={leftSvg}
         alt="Tringle emulating the back left of an envelope."
-        envH={envH}
       />
 
       <RightImg
         src={rightSvg}
         alt="Triangle emulating the back right of an envelope."
-        envH={envH}
       />
 
       <BottomImg
         src={bottomSvg}
         alt="Triangle emulating the back bottom of an envelope."
-        envW={envW}
       />
 
       <InsideImg
         src={inside}
-        alt="triangle with all three sides equal"
-        envW={envW}
-        envH={envH}
+        alt="Inside the envelope pattern"
       />
 
-      <StyledSaveTheDateCard envH={envH} tCardOpen={tCardOpen}/>
+      <StyledSaveTheDateCard tCardOpen={tCardOpen}/>
 
     </StyledEnvelope>
 

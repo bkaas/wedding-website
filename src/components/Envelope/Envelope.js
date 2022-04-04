@@ -16,7 +16,7 @@ const tCardOpen  = {duration:   5, delay: sumObj(tEnvOpen)};
 // Envelope Colour
 const color = `HSL(207, 7%, 60%)`;
 
-// Define appearance effect
+// Define envelope appearance effect
 const envAppear = keyframes`
   from {
     opacity: 0;
@@ -29,9 +29,6 @@ const envAppear = keyframes`
 
 const Container = styled.div`
   position: relative;
-  height: ${({envH}) => envH}rem;
-  width: ${({envW}) => envW}rem;
-  // max-width: 80vw;
   margin: auto;
   // border: 2px solid black;
   filter: drop-shadow(5px 5px 8px rgb(0 0 0 / 0.4));
@@ -72,7 +69,7 @@ const StyledEnvelopeFront = styled(EnvelopeFront)`
   height: 100%;
   width: 100%;
   animation-name: ${envFlip(0)};
-  background-color: ${({color}) => color};
+  background-color: ${color};
 
   /* Debug */
   // visibility: hidden;
@@ -93,14 +90,12 @@ const StyledEnvelopeBack = styled(EnvelopeBack)`
   // }
 `;
 
-const Envelope = ({className, envW, envH, name}) => {
+const Envelope = ({className, name}) => {
 
   return (
-    <Container envW={envW} envH={envH} className={className}>
-      <StyledEnvelopeFront name={name} color={color}/>
+    <Container className={className}>
+      <StyledEnvelopeFront name={name} />
       <StyledEnvelopeBack
-        envW={envW}
-        envH={envH}
         tEnvOpen={tEnvOpen}
         tCardOpen={tCardOpen}
         color={color}
