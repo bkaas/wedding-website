@@ -9,6 +9,14 @@ const NotFoundText = styled.h1`
   text-align: center;
   font-family: "Goudy Old Style", serif;
   font-weight: normal;
+
+  @media (max-width: 640px) {
+    font-size: calc(2em * 0.75);
+  }
+
+  @media (max-width: 320px) {
+    font-size: calc(2em * 0.5);
+  }
 `;
 
 const NotFoundPage = () => {

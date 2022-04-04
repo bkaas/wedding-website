@@ -19,8 +19,8 @@ const StyledMain = styled.main`
 `;
 
 const Runner = styled.div`
-  max-width: 80%;
-  min-width: 250px;
+  max-width: 90%;
+  min-width: 210px;
   background-color: white;
   flex: 1 1 auto;
 

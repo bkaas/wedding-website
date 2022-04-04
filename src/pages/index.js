@@ -11,7 +11,7 @@ const weddingDate = "Saturday, February 25, 2023";
 const venue = "Cambridge Mill";
 
 const fontSizes = {names: "2.5em", date: "1.75em", info: "2em"};
-const fontDownScale = {px768: 0.75, px640: 0.6};
+const fontDownScale = {px768: 0.75, px640: 0.6, px320: 0.45};
 
 const Names = styled.h1`
   text-align: center;
@@ -26,6 +26,10 @@ const Names = styled.h1`
 
   @media (max-width: 640px) {
     font-size: calc(${fontSizes["names"]} * ${fontDownScale["px640"]});
+  }
+
+  @media (max-width: 320px) {
+    font-size: calc(${fontSizes["names"]} * ${fontDownScale["px320"]});
   }
 `;
 
@@ -42,6 +46,10 @@ const WeddingDate = styled.div`
   @media (max-width: 640px) {
     font-size: calc(${fontSizes["date"]} * ${fontDownScale["px640"]});
   }
+
+  @media (max-width: 320px) {
+    font-size: calc(${fontSizes["date"]} * ${fontDownScale["px320"]});
+  }
 `;
 
 const Venue = styled(WeddingDate)``;
@@ -57,6 +65,10 @@ const MoreInfo = styled(WeddingDate)`
 
   @media (max-width: 640px) {
     font-size: calc(${fontSizes["info"]} * ${fontDownScale["px640"]});
+  }
+
+  @media (max-width: 320px) {
+    font-size: calc(${fontSizes["info"]} * ${fontDownScale["px320"]});
   }
 `;
 
