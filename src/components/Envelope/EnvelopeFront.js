@@ -26,6 +26,10 @@ const Names = styled.p`
   top: 50%;
   transform: translateY(-50%);
   color: black;
+
+  @media (max-width: 640px) {
+    font-size: 1.6em;
+  }
 `;
 
 const Stamp = styled.img`
@@ -37,7 +41,7 @@ const Stamp = styled.img`
   height: auto;
 `;
 
-const EnvelopeFront = ({className, name, color}) => {
+const EnvelopeFront = ({className, name}) => {
 
   return(
 
