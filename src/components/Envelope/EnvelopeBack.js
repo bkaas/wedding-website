@@ -133,6 +133,10 @@ const InsideImg = styled.img`
 
 // Move card animation
 const removeCard = keyframes`
+  0% {
+    z-index: 1;
+  }
+
   25% {
     /* Remove card from envelope */
     transform: scale(calc(1 / 1.5)) translateY(-100%);
