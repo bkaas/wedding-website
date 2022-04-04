@@ -19,9 +19,14 @@ const StyledMain = styled.main`
 `;
 
 const Runner = styled.div`
-  max-width: 80rem;
+  max-width: 80%;
+  min-width: 250px;
   background-color: white;
-  flex: 1 1;
+  flex: 1 1 auto;
+
+  @media (max-width: 640px) {
+    /* Placeholder */
+  }
 `;
 
 const RunnerHeader = styled.img`

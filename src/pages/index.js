@@ -10,24 +10,37 @@ import Layout from "../components/Layout/Layout.js"
 const weddingDate = "Saturday, February 25, 2023";
 const venue = "Cambridge Mill";
 
+const fontSizes = {names: "2.5em", date: "1.75em", info: "2em"};
+const fontDownScale = {px768: 0.75, px640: 0.6};
+
 const Names = styled.h1`
   text-align: center;
   font-family: "Perpetua Titling MT", serif;
   font-weight: normal;
-  font-size: 3em;
-  margin: 0 0.5em 1em;
+  font-size: ${fontSizes["names"]};
+  margin: 0 1em 1em;
+
+  @media (max-width: 768px) {
+    font-size: calc(${fontSizes["names"]} * ${fontDownScale["px768"]});
+  }
+
   @media (max-width: 640px) {
-    font-size: calc(3em * 0.75);
+    font-size: calc(${fontSizes["names"]} * ${fontDownScale["px640"]});
   }
 `;
 
 const WeddingDate = styled.div`
   text-align: center;
   font-family: "Goudy Old Style", serif;
-  font-size: 2em;
+  font-size: ${fontSizes["date"]};
   margin: 0.25em 0;
+
+  @media (max-width: 768px) {
+    font-size: calc(${fontSizes["date"]} * ${fontDownScale["px768"]});
+  }
+
   @media (max-width: 640px) {
-    font-size: calc(2em * 0.75);
+    font-size: calc(${fontSizes["date"]} * ${fontDownScale["px640"]});
   }
 `;
 
@@ -36,9 +49,14 @@ const Venue = styled(WeddingDate)``;
 const MoreInfo = styled(WeddingDate)`
   margin-top: 2em;
   font-style: italic;
-  font-size: 2.5em;
+  font-size: ${fontSizes["info"]};
+
+  @media (max-width: 768px) {
+    font-size: calc(${fontSizes["info"]} * ${fontDownScale["px768"]});
+  }
+
   @media (max-width: 640px) {
-    font-size: calc(2.5em * 0.75);
+    font-size: calc(${fontSizes["info"]} * ${fontDownScale["px640"]});
   }
 `;
 

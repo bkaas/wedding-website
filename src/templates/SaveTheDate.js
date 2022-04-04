@@ -6,7 +6,7 @@ import GlobalStyle from "../components/GlobalStyles.js"
 import siteBackground from "../images/siteBackground_2.png"
 
 // Envelope sizing
-const envW = 25; // rem
+const envW = 30; // rem
 const envH = envW * 11/15; // rem
 
 // Centre envelope on the screen
@@ -29,8 +29,8 @@ const StyledEnvelope = styled(Envelope)`
   }
 
   @media (max-width: 640px) {
-    width: ${envW / 1.25}rem;
-    height: ${envH / 1.25}rem;
+    width: ${envW / 1.5}rem;
+    height: ${envH / 1.5}rem;
   }
 
 `;
