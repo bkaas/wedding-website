@@ -3,7 +3,7 @@ const path = require("path");
 require("dotenv").config();
 const { MyGoogleApi } = require("./src/util/myGoogleApi.js");
 
-const RANGE = "'Card Invites'!A2:C3";
+const RANGE = "'Card Invites'!A2:C61";
 
 // Create pages for each save the date
 exports.createPages = async ({graphql, actions, reporter}) => {
