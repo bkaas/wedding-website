@@ -19,7 +19,7 @@ const Names = styled.p`
   text-align: center;
   font-family: "Pinyon Script", "Brush Script MT", cursive;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 5%;
   white-space: pre-line;
   position: relative;
