@@ -93,7 +93,7 @@ const StyledEnvelopeBack = styled(EnvelopeBack)`
 const Envelope = ({className, name}) => {
 
   return (
-    <Container className={className}>
+    <Container id="envelope" className={className}>
       <StyledEnvelopeFront name={name} />
       <StyledEnvelopeBack
         tEnvOpen={tEnvOpen}
