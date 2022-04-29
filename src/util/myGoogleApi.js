@@ -2,9 +2,7 @@
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 
-require("dotenv").config({
-  path: `.env.development`
-})
+require("dotenv").config();
 
 // Ref: https://dev.to/chandrapantachhetri/sending-emails-securely-using-node-js-nodemailer-smtp-gmail-and-oauth2-g3a
 // Ref: https://morioh.com/p/1313d7785668
