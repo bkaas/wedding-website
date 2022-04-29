@@ -17,9 +17,9 @@ const StyledEnvelopeFront = styled.div`
 
 const Names = styled.p`
   text-align: center;
-  font-family: "Pinyon Script", "Brush Script MT", cursive;
-  font-weight: bold;
-  font-size: 1.5em;
+  font-family: "Great Vibes", "Pinyon Script", "Brush Script MT", cursive;
+  // font-weight: bold;
+  font-size: 1.2em;
   margin: 5%;
   white-space: pre-line;
   position: relative;
@@ -28,7 +28,7 @@ const Names = styled.p`
   color: black;
 
   @media (max-width: 640px) {
-    font-size: 1.6em;
+    font-size: 1em;
   }
 `;
 
