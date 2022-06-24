@@ -70,6 +70,7 @@ const StyledEnvelopeFront = styled(EnvelopeFront)`
   width: 100%;
   animation-name: ${envFlip(0)};
   background-color: ${color};
+  z-index: 1;
 
   /* Debug */
   // visibility: hidden;
