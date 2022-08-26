@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import GlobalStyle from "../GlobalStyles.js"
 import Navbar from "./Navbar.js"
@@ -39,7 +39,7 @@ const Runner = styled.div`
 
 const HeaderContainer = styled.header`
   position: sticky;
-  top: -15%;
+  top: -13vw;
   // border: 1px solid black;
 `
 

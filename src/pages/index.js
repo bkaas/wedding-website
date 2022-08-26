@@ -1,4 +1,4 @@
-import React, { createRef } from "react"
+import React from "react"
 import styled from "styled-components"
 
 // Fonts
@@ -10,13 +10,13 @@ import Section from "../components/Layout/Section.js"
 import TheDay from "../components/IndexPageSections/TheDay.js"
 import Accomodation from "../components/IndexPageSections/Accomodation.js"
 
+// Media Queries
+import mediaQueries, {fontSizes} from "../util/mediaQueries.js"
+
 const weddingDate = "Saturday, February 25, 2023";
 const venue = "Cambridge Mill";
 
-const fontSizes = {names: "2.5em", date: "1.75em", info: "2em"};
-const fontDownScale = {px768: 0.75, px640: 0.6, px320: 0.45};
 
-// TODO cleanup
 const Names = styled.h1`
   text-align: center;
   font-family: "Perpetua Titling MT", serif;
@@ -24,17 +24,7 @@ const Names = styled.h1`
   font-size: ${fontSizes["names"]};
   margin: 0 1em 1em;
 
-  @media (max-width: 768px) {
-    font-size: calc(${fontSizes["names"]} * ${fontDownScale["px768"]});
-  }
-
-  @media (max-width: 640px) {
-    font-size: calc(${fontSizes["names"]} * ${fontDownScale["px640"]});
-  }
-
-  @media (max-width: 320px) {
-    font-size: calc(${fontSizes["names"]} * ${fontDownScale["px320"]});
-  }
+  ${mediaQueries("names")}
 `;
 
 const WeddingDate = styled.div`
@@ -43,17 +33,7 @@ const WeddingDate = styled.div`
   font-size: ${fontSizes["date"]};
   margin: 0.25em 0;
 
-  @media (max-width: 768px) {
-    font-size: calc(${fontSizes["date"]} * ${fontDownScale["px768"]});
-  }
-
-  @media (max-width: 640px) {
-    font-size: calc(${fontSizes["date"]} * ${fontDownScale["px640"]});
-  }
-
-  @media (max-width: 320px) {
-    font-size: calc(${fontSizes["date"]} * ${fontDownScale["px320"]});
-  }
+  ${mediaQueries("date")}
 `;
 
 const Venue = styled(WeddingDate)``;
@@ -63,17 +43,7 @@ const MoreInfo = styled(WeddingDate)`
   font-style: italic;
   font-size: ${fontSizes["info"]};
 
-  @media (max-width: 768px) {
-    font-size: calc(${fontSizes["info"]} * ${fontDownScale["px768"]});
-  }
-
-  @media (max-width: 640px) {
-    font-size: calc(${fontSizes["info"]} * ${fontDownScale["px640"]});
-  }
-
-  @media (max-width: 320px) {
-    font-size: calc(${fontSizes["info"]} * ${fontDownScale["px320"]});
-  }
+  ${mediaQueries("info")}
 `;
 
 const Blank = styled.div`
@@ -88,9 +58,7 @@ const Headings = styled.h2`
   margin: 0 1em 1em;
 `;
 
-// Create a ref to the heading
-const headingRef = React.createRef();
-
+// Create a ref to the headings
 const headingData = [{
     "name": "Home", // handled on the anchor onClick to scroll to the topq
   },
@@ -99,7 +67,7 @@ const headingData = [{
     "ref": React.createRef(),
   },
   {
-    "name": "Accomodation",
+    "name": "Accommodation",
     "ref": React.createRef(),
   },
   {
@@ -118,7 +86,7 @@ const HomePage = () => {
         <WeddingDate>{weddingDate}</WeddingDate>
         <Venue>{venue}</Venue>
       </div>
-      <MoreInfo>More Info Coming Soon!</MoreInfo>
+      {/*<MoreInfo>More Info Coming Soon!</MoreInfo>*/}
       {/*<Blank />*/}
       {/*<Headings ref={headingRef} id="heading-theday">The Day</Headings>*/}
       {/*<Section headingRef={headingData[0].ref} name={headingData[0].name}></Section>*/}

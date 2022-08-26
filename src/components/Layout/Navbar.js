@@ -2,16 +2,24 @@ import React from "react"
 import styled from "styled-components"
 
 // Fonts
-import FontStyles from "../../fonts/FontStyles.js"
+// import FontStyles from "../../fonts/FontStyles.js"
+
+// Media Queries
+import mediaQueries from "../../util/mediaQueries.js"
 
 const NavbarFlexContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  padding: 0 15%;
+  padding: 0 10vw;
   position: absolute;
   bottom: 12%;
-  width: 100%
+  width: 100%;
+
+  & a {
+    margin: 1%;
+  }
+
 `;
 
 const NavbarAnchorStyled = styled.a`
@@ -20,6 +28,8 @@ const NavbarAnchorStyled = styled.a`
   font-size: 1.6em;
   text-decoration: none;
   font-family: "Goudy Old Style", serif;
+
+  ${mediaQueries("date")}
 
   &:hover {
     text-decoration: underline;
@@ -39,11 +49,14 @@ const NavbarAnchor = (props) => {
       window.scroll(0,0);
     }
     else {
-      props.headingRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-      window.scroll(0, window.scrollY - 200)
+      // Header image intrinsic aspect ratio 767 x 292
+      // Sticky position is 13vw above the top of the page (top: -13vw)
+      // The Runner width is 90% of the viewport width (not quite)
+      const windowWidth = window.innerWidth // pixels
+      const headerHeight = windowWidth * 0.9 * 292/767 - 0.13 * windowWidth; // pixels
+
+      props.headingRef.current.scrollIntoView({behavior: "smooth"});
+      window.scroll(0, window.scrollY - headerHeight)
     }
   }
 
