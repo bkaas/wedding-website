@@ -17,16 +17,6 @@ const weddingDate = "Saturday, February 25, 2023";
 const venue = "Cambridge Mill";
 
 
-const Names = styled.h1`
-  text-align: center;
-  font-family: "Perpetua Titling MT", serif;
-  font-weight: normal;
-  font-size: ${fontSizes["names"]};
-  margin: 0 1em 1em;
-
-  ${mediaQueries("names")}
-`;
-
 const WeddingDate = styled.div`
   text-align: center;
   font-family: "Goudy Old Style", serif;

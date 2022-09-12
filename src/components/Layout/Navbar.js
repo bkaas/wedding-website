@@ -12,12 +12,16 @@ const NavbarFlexContainer = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   padding: 0 10vw;
-  position: absolute;
-  bottom: 12%;
+  // position: absolute;
+  // bottom: 12%;
   width: 100%;
 
   & a {
     margin: 1%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0;
   }
 
 `;

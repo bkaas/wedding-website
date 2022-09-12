@@ -9,9 +9,11 @@ export const fontSizes = {
 };
 
 const fontDownScale = {
-  px768: 0.75,
+  px1400: 1.2,
+  px900: 0.9,
+  px768: 0.7,
   px640: 0.6,
-  px320: 0.45
+  px360: 0.45
 };
 
 function mediaQueries(textType) {
@@ -21,6 +23,14 @@ function mediaQueries(textType) {
   }
 
   const outStr = `
+    @media (min-width: 1400px) {
+      font-size: calc(${fontSizes[textType]} * ${fontDownScale["px1400"]});
+    }
+
+    @media (max-width: 900px) {
+      font-size: calc(${fontSizes[textType]} * ${fontDownScale["px900"]});
+    }
+
     @media (max-width: 768px) {
       font-size: calc(${fontSizes[textType]} * ${fontDownScale["px768"]});
     }
@@ -29,8 +39,8 @@ function mediaQueries(textType) {
       font-size: calc(${fontSizes[textType]} * ${fontDownScale["px640"]});
     }
 
-    @media (max-width: 320px) {
-      font-size: calc(${fontSizes[textType]} * ${fontDownScale["px320"]});
+    @media (max-width: 360px) {
+      font-size: calc(${fontSizes[textType]} * ${fontDownScale["px360"]});
     }`;
 
   return outStr;
