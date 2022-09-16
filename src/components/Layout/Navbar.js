@@ -1,6 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
+// Components
+import FlexSpacer from "./FlexSpacer.js"
+
 // Fonts
 // import FontStyles from "../../fonts/FontStyles.js"
 
@@ -11,9 +14,7 @@ const NavbarFlexContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  padding: 0 10vw;
-  // position: absolute;
-  // bottom: 12%;
+  padding: 0 10%;
   width: 100%;
 
   & a {
@@ -27,7 +28,7 @@ const NavbarFlexContainer = styled.div`
 `;
 
 const NavbarAnchorStyled = styled.a`
-  flex: 1 1 20%;
+  flex: 1 1 auto;
   text-align: center;
   font-size: 1.6em;
   text-decoration: none;
@@ -43,6 +44,9 @@ const NavbarAnchorStyled = styled.a`
   &:active {
     text-decoration: underline;
   }
+
+  //Debug
+  // border: 1px solid black;
 
 `;
 

@@ -4,6 +4,7 @@ import styled from "styled-components"
 // Components
 import GlobalStyle from "../GlobalStyles.js"
 import Navbar from "./Navbar.js"
+import FlexSpacer from "./FlexSpacer.js"
 
 // Media Queries
 import mediaQueries, {fontSizes} from "../../util/mediaQueries.js"
@@ -21,9 +22,9 @@ const Background = styled.div`
 `;
 
 // Flex container to center the runner
-const RunnerContainer = styled.div`
+const RunnerFlexContainer = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: center;
   z-index: -2;
 `;
@@ -34,14 +35,17 @@ const RunnerContainer = styled.div`
 // percentage will change depending on whether the vertical scrollbar
 // is present
 const runnerWidth = `85vw`;
+const maxRunnerWidth = `1500px`;
+const minRunnerWidth = `210px`;
+const currentRunnerWidth = `max( min(${runnerWidth}, ${maxRunnerWidth}) , ${minRunnerWidth} )`;
 
 // White runner (reduced width) to hold the content
 const Runner = styled.div`
-  max-width: ${runnerWidth};
-  // max-width: 1000px
-  min-width: 210px;
+  // width: ${runnerWidth};
+  max-width: ${maxRunnerWidth};
+  min-width: ${minRunnerWidth};
   background-color: white;
-  flex: 1 1 auto;
+  flex: 0 0 ${runnerWidth};
   z-index: 0;
 
   @media (max-width: 640px) {
@@ -54,7 +58,7 @@ const Runner = styled.div`
 // Since the header image is position: absolute, the div won't
 // automatically set its height based on the image's height
 const headerImgAR = 292 / 767;
-const headerImgH = `${runnerWidth} * ${headerImgAR}`;
+const headerImgH = `${currentRunnerWidth} * ${headerImgAR}`;
 
 // Set the scroll stop position (sticky top)
 // Half the header image height with some margin
@@ -96,16 +100,6 @@ const HeaderInfoFlexDiv = styled.div`
   align-items: center;
 `;
 
-// Add blanks in between the header information with custom
-// resizing
-// Defaults are flex: 0 0 auto
-const HeaderInfoFlexSpacer = styled.div`
-  flex-grow: ${props => props.hasOwnProperty("grow") ? props.grow : 0};
-  flex-shrink: ${props => props.hasOwnProperty("shrink") ? props.shrink : 0};
-  flex-basis: ${props => props.hasOwnProperty("basis") ? props.basis : "auto"};
-  width: 100%;
-`;
-
 const RunnerFooter = styled.img`
   transform: rotateX(180deg);
   width: 100%;
@@ -129,20 +123,18 @@ const Layout = ({children, headings}) => {
     <Background>
       <GlobalStyle />
 
-      <RunnerContainer>
+      <RunnerFlexContainer>
+        <FlexSpacer grow="1" shrink="1" basis="auto"/>
         <Runner>
 
           <HeaderContainer>
-            {/*<BackgroundImageDiv>*/}
             <HeaderImg src={headerImg} alt="Nice Flowers" />
             <HeaderInfoFlexDiv>
-              <HeaderInfoFlexSpacer grow="0" shrink="0" basis="46%"/>
+              <FlexSpacer grow="0" shrink="0" basis="46%"/>
               <Names>Brendan & Jacqueline</Names>
-              <HeaderInfoFlexSpacer grow="1" shrink="1" />
-              {/*</BackgroundImageDiv>*/}
+              <FlexSpacer grow="1" shrink="1" />
               <Navbar headings={headings} />
-              <HeaderInfoFlexSpacer grow="1" shrink="1" />
-              {/*<div>test</div>*/}
+              <FlexSpacer grow="1" shrink="1" />
             </HeaderInfoFlexDiv>
           </HeaderContainer>
 
@@ -153,7 +145,8 @@ const Layout = ({children, headings}) => {
           <RunnerFooter src={footerImg} alt="Nice Flowers" />
 
         </Runner>
-      </RunnerContainer>
+        <FlexSpacer grow="1" shrink="1" basis="auto"/>
+      </RunnerFlexContainer>
 
     </Background>
   )

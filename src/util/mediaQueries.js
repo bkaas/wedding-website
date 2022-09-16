@@ -11,9 +11,9 @@ export const fontSizes = {
 const fontDownScale = {
   px1400: 1.2,
   px900: 0.9,
-  px768: 0.7,
-  px640: 0.6,
-  px360: 0.45
+  px768: 0.75,
+  px640: 0.62,
+  px380: 0.45
 };
 
 function mediaQueries(textType) {
@@ -39,8 +39,8 @@ function mediaQueries(textType) {
       font-size: calc(${fontSizes[textType]} * ${fontDownScale["px640"]});
     }
 
-    @media (max-width: 360px) {
-      font-size: calc(${fontSizes[textType]} * ${fontDownScale["px360"]});
+    @media (max-width: 380px) {
+      font-size: calc(${fontSizes[textType]} * ${fontDownScale["px380"]});
     }`;
 
   return outStr;
