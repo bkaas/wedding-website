@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { navigate } from "gatsby"
 
 // Components
 import FlexSpacer from "./FlexSpacer.js"
@@ -9,6 +10,9 @@ import FlexSpacer from "./FlexSpacer.js"
 
 // Media Queries
 import mediaQueries from "../../util/mediaQueries.js"
+
+// Util
+import {layoutDims} from "./Layout.js"
 
 const NavbarFlexContainer = styled.div`
   display: flex;
@@ -53,19 +57,44 @@ const NavbarAnchorStyled = styled.a`
 const NavbarAnchor = (props) => {
 
   function handleClick() {
-    if (props.isHome) {
-      window.scroll(0,0);
+
+    if (props.isRsvp) {
+      navigate("/rsvp");
     }
     else {
-      // Header image intrinsic aspect ratio 767 x 292
-      // Sticky position is 13vw above the top of the page (top: -13vw)
-      // The Runner width is 90% of the viewport width (not quite)
-      const windowWidth = window.innerWidth // pixels
-      const headerHeight = windowWidth * 0.9 * 292/767 - 0.13 * windowWidth; // pixels
 
-      props.headingRef.current.scrollIntoView({behavior: "smooth"});
-      window.scroll(0, window.scrollY - headerHeight)
+      // The user didn't select RSVP, so they need to be on the
+      // home page before it can scroll
+      const url = typeof window !== 'undefined' ? window.location.pathname : '';
+      console.log(`url: ${url}`);
+      if (url !== "/") {
+        navigate("/");
+      }
+
+      if (props.isHome) {
+        window.scroll(0,0);
+      }
+      else {
+        // Scroll to the heading corresponding to the selected heading
+        // The top of the page is dynamic based on the viewport width
+        // which sets the header image height
+        const windowWidth = window.innerWidth // pixels
+        const headerHeight = layoutDims.calcTop(windowWidth); // pixels
+        const scrollMargin = 1.1;
+
+        // Get the position of the heading
+        const rect = props.headingRef.current.getBoundingClientRect();
+        // Scroll down to the heading position minus the header height
+        // and some empirically determined margin
+        window.scrollBy(0, rect.y - headerHeight * scrollMargin);
+
+        // Debug
+        // console.log(rect);
+        // console.log(`Header height: ${headerHeight}`);
+        // console.log(layoutDims);
+      }
     }
+
   }
 
   return (
@@ -82,15 +111,19 @@ const NavbarAnchor = (props) => {
 /**
 * Generate a navigation bar for scrolling to headings
 * headings -> array of objects with fields: name and link to the heading ids
+*
+* Creates a NavbarFlexContainer with a bunch of NavbarAnchors in it
 */
 const Navbar = ({headings}) => {
 
   // TODO check to make sure the headings object has
   // fields name and link
   const navbarLinks = headings.map(({name, ref}, index) => {
+
     return(
       <NavbarAnchor
         isHome={name === "Home"}
+        isRsvp={name === "RSVP"}
         headingRef={ref}
         key={index}
       >

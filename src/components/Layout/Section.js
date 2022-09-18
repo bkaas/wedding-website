@@ -19,22 +19,14 @@ const SectionWrapper = styled.div`
 const SectionContentContainer = styled.div`
   display: flex;
   flex-flow: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   margin: 1em;
 
   & * {
-    margin: 1em;
+    // margin: 1em;
   }
 
-  & p {
-  text-align: center;
-  font-family: "Goudy Old Style", serif;
-  font-size: ${fontSizes["content"]};
-  margin: 0.25em 0;
-
-  ${mediaQueries("content")}
-  }
 `
 
 const Heading = styled.h2`

@@ -5,7 +5,7 @@ import styled from "styled-components"
 import FontStyles from "../fonts/FontStyles.js"
 
 // Components
-import Layout from "../components/Layout/Layout.js"
+import Layout, {headingData} from "../components/Layout/Layout.js"
 import Section from "../components/Layout/Section.js"
 import TheDay from "../components/IndexPageSections/TheDay.js"
 import Accomodation from "../components/IndexPageSections/Accomodation.js"
@@ -48,31 +48,12 @@ const Headings = styled.h2`
   margin: 0 1em 1em;
 `;
 
-// Create a ref to the headings
-const headingData = [{
-    "name": "Home", // handled on the anchor onClick to scroll to the topq
-  },
-  {
-    "name": "The Day",
-    "ref": React.createRef(),
-  },
-  {
-    "name": "Accommodation",
-    "ref": React.createRef(),
-  },
-  {
-    "name": "FAQ",
-    "ref": React.createRef(),
-  },
-];
-
 const HomePage = () => {
   return (
-    <Layout headings={headingData}>
+    <Layout>
       <title>Brendan Kaas and Jacqueline Fossenier's Wedding Website</title>
-      <div>
+      <div style={{margin: 2 + `em`}}> {/* TODO / temporary styling */}
         <FontStyles />
-        {/*<Names>Brendan & Jacqueline</Names>*/}
         <WeddingDate>{weddingDate}</WeddingDate>
         <Venue>{venue}</Venue>
       </div>
@@ -80,11 +61,11 @@ const HomePage = () => {
       {/*<Blank />*/}
       {/*<Headings ref={headingRef} id="heading-theday">The Day</Headings>*/}
       {/*<Section headingRef={headingData[0].ref} name={headingData[0].name}></Section>*/}
-      <TheDay headingRef={headingData[1].ref}/>
+      <TheDay headingRef={headingData[1].ref} headingName={headingData[1].name}/>
       {/*<Section headingRef={headingData[1].ref} name={headingData[1].name}></Section>*/}
       {/*<Section headingRef={headingData[2].ref} name={headingData[2].name}></Section>*/}
-      <Accomodation headingRef={headingData[2].ref} />
-      <Section headingRef={headingData[3].ref} name={headingData[3].name}></Section>
+      <Accomodation headingRef={headingData[2].ref} headingName={headingData[2].name}/>
+      <Section headingRef={headingData[3].ref} name={headingData[3].name}/>
     </Layout>
   )
 }

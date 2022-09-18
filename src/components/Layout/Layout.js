@@ -34,9 +34,12 @@ const RunnerFlexContainer = styled.div`
 // the width of the parent container, so setting the width as a
 // percentage will change depending on whether the vertical scrollbar
 // is present
-const runnerWidth = `85vw`;
-const maxRunnerWidth = `1500px`;
-const minRunnerWidth = `210px`;
+const runnerWidthVW = 85;
+const maxRunnerWidthPX = 1500;
+const minRunnerWidthPX = 210;
+const runnerWidth = `${runnerWidthVW}vw`;
+const maxRunnerWidth = `${maxRunnerWidthPX}px`;
+const minRunnerWidth = `${minRunnerWidthPX}px`;
 const currentRunnerWidth = `max( min(${runnerWidth}, ${maxRunnerWidth}) , ${minRunnerWidth} )`;
 
 // White runner (reduced width) to hold the content
@@ -61,15 +64,52 @@ const headerImgAR = 292 / 767;
 const headerImgH = `${currentRunnerWidth} * ${headerImgAR}`;
 
 // Set the scroll stop position (sticky top)
-// Half the header image height with some margin
-const stickyTop = `${headerImgH} * -0.4`;
+// Probably not necessary anymore since I decided to keep the
+// full image height. Position: fixed might make more sense.
+const stickyTop = `${headerImgH} * 0`;
+
+// Percentage of the header image height that will cover the
+// webpage content (ie. marking the top of the page)
+const overlayedHeaderHeightPerc = 0.75;
 
 //
 const HeaderContainer = styled.header`
   position: sticky;
   top: calc( ${stickyTop} );
   width: 100%;
+  height: calc( ${headerImgH} * ${overlayedHeaderHeightPerc});
+  overflow: hidden;
+`
+
+// Used to figure out where to scroll the headers to in Navbar.js
+export const layoutDims = {
+  runnerWidthVW,
+  maxRunnerWidthPX,
+  minRunnerWidthPX,
+  headerImgAR,
+  overlayedHeaderHeightPerc,
+  calcTop(viewportWidthPx) {
+    return(
+      Math.max(
+        Math.min(viewportWidthPx * this.runnerWidthVW / 100, this.maxRunnerWidthPX),
+        this.minRunnerWidthPX
+      ) * this.headerImgAR * this.overlayedHeaderHeightPerc
+    );
+  },
+  runnerWidthCssStr: currentRunnerWidth,
+  footerImgAR: 300 / 767,
+}
+
+// Display the header image (twice) where the background image has
+// the full height and allows the content to pass over it.
+// Enables a chosen point in the height of the image where the
+// content will dissapear when scrolling
+const HeaderContainerBackground = styled(HeaderContainer)`
   height: calc( ${headerImgH} );
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  width: ${currentRunnerWidth};
 `
 
 // Need to use an img element because setting the background-image
@@ -92,7 +132,7 @@ const HeaderImg = styled.img`
 // of the justify-content property of the parent flexbox
 const HeaderInfoFlexDiv = styled.div`
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -118,7 +158,28 @@ const Names = styled.h1`
   ${mediaQueries("names")}
 `;
 
-const Layout = ({children, headings}) => {
+// Create a ref to the headings
+export const headingData = [{
+    "name": "Home", // handled on the anchor onClick to scroll to the top
+  },
+  {
+    "name": "The Day",
+    "ref": React.createRef(),
+  },
+  {
+    "name": "Accommodations",
+    "ref": React.createRef(),
+  },
+  {
+    "name": "FAQ",
+    "ref": React.createRef(),
+  },
+  {
+    "name": "RSVP",
+  },
+];
+
+const Layout = (props) => {
   return(
     <Background>
       <GlobalStyle />
@@ -130,16 +191,19 @@ const Layout = ({children, headings}) => {
           <HeaderContainer>
             <HeaderImg src={headerImg} alt="Nice Flowers" />
             <HeaderInfoFlexDiv>
-              <FlexSpacer grow="0" shrink="0" basis="46%"/>
+              <FlexSpacer grow="1" shrink="1" basis="46%"/>
               <Names>Brendan & Jacqueline</Names>
               <FlexSpacer grow="1" shrink="1" />
-              <Navbar headings={headings} />
-              <FlexSpacer grow="1" shrink="1" />
+              <Navbar headings={headingData} />
+              {/*<FlexSpacer grow="1" shrink="1" />*/}
             </HeaderInfoFlexDiv>
           </HeaderContainer>
+          <HeaderContainerBackground>
+            <HeaderImg src={headerImg} alt="Nice Flowers" />
+          </HeaderContainerBackground>
 
           <main>
-            {children}
+            {props.children}
           </main>
 
           <RunnerFooter src={footerImg} alt="Nice Flowers" />
