@@ -7,6 +7,17 @@ require("dotenv").config();
 // Ref: https://dev.to/chandrapantachhetri/sending-emails-securely-using-node-js-nodemailer-smtp-gmail-and-oauth2-g3a
 // Ref: https://morioh.com/p/1313d7785668
 
+// Ref:
+// https://googleapis.dev/nodejs/googleapis/latest/tasks/#oauth2-client
+// https://developers.google.com/identity/protocols/oauth2/openid-connect
+
+// Ref:
+// https://googleapis.dev/nodejs/googleapis/latest/sheets/classes/Resource$Spreadsheets$Values.html
+// https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
+
+// The refresh tokens generated from the oauth 2.0 playground expire
+// either after 24h or 7 days
+
 class MyGoogleApi {
 
   // Private instance fields
@@ -14,6 +25,11 @@ class MyGoogleApi {
   #accessToken; // Used with nodemailer
   #sheet; // Google sheets instance
   #sheetId;
+
+  // scopes = [
+  //   "https://www.googleapis.com/auth/spreadsheets",
+  //   "https://mail.google.com/"
+  // ];
 
   constructor(sheetId) {
     this.#sheetId = sheetId;
@@ -74,6 +90,31 @@ class MyGoogleApi {
     }
 
     return sheetData.data;
+
+  }
+
+  // Ref: https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/update
+  async writeSheet(spreadsheetId, range, values) {
+
+        // Read from the spreadsheet
+    let res;
+    try {
+      res = await this.#sheet.spreadsheets.values.update({
+        spreadsheetId, // spreadsheet id
+        range, //range of cells to write to.
+        valueInputOption: "USER_ENTERED",
+        requestBody: {
+          "majorDimension": "ROWS",
+          range,
+          values,
+        },
+      })
+    }
+    catch (err) {
+      console.log(err);
+    }
+
+    return res.data;
 
   }
 
