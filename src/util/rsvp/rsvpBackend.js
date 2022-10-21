@@ -182,9 +182,11 @@ class Rsvp {
 
     })
 
-  }
+  } // handleResponse()
 
 } // Rsvp class
+
+module.exports.Rsvp = Rsvp;
 
 let rb, guestInfo;
 (async () => {
@@ -204,6 +206,7 @@ let rb, guestInfo;
     throw new Error(err);
   }
 })();
+
 
 // Flow
 // Enter a name (pass it to findGuest())
