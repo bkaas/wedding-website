@@ -1,9 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-// Fonts
-// import FontStyles from "../fonts/FontStyles.js"
-
 // Components
 import Layout, {headingData} from "../components/Layout/Layout.js"
 import Section from "../components/Layout/Section.js"
@@ -28,25 +25,25 @@ const WeddingDate = styled.div`
 
 const Venue = styled(WeddingDate)``;
 
-const MoreInfo = styled(WeddingDate)`
-  margin-top: 2em;
-  font-style: italic;
-  font-size: ${fontSizes["info"]};
+// const MoreInfo = styled(WeddingDate)`
+//   margin-top: 2em;
+//   font-style: italic;
+//   font-size: ${fontSizes["info"]};
 
-  ${mediaQueries("info")}
-`;
+//   ${mediaQueries("info")}
+// `;
 
-const Blank = styled.div`
-  width: 100%;
-  height: 30em;
-`;
+// const Blank = styled.div`
+//   width: 100%;
+//   height: 30em;
+// `;
 
-const Headings = styled.h2`
-  font-family: "Perpetua Titling MT", serif;
-  font-weight: normal;
-  font-size: ${fontSizes["names"]};
-  margin: 0 1em 1em;
-`;
+// const Headings = styled.h2`
+//   font-family: "Perpetua Titling MT", serif;
+//   font-weight: normal;
+//   font-size: ${fontSizes["names"]};
+//   margin: 0 1em 1em;
+// `;
 
 const HomePage = () => {
   return (

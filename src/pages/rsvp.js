@@ -6,9 +6,6 @@ import Layout, {layoutDims} from "../components/Layout/Layout.js"
 import RsvpMain, {StatusMessageDiv} from "../components/IndexPageSections/Rsvpmain.js"
 import Login from "../components/Login.js"
 
-// Media Queries
-import mediaQueries, {fontSizes} from "../util/mediaQueries.js"
-
 const headerAndFooterHeights = `
   ${layoutDims.runnerWidthCssStr} *
   ${layoutDims.headerImgAR} *
@@ -18,17 +15,6 @@ const headerAndFooterHeights = `
 const MinHeightDiv = styled.div`
   min-height: calc( 99.5vh - (${headerAndFooterHeights}) );
 `
-
-// const ErrorMessageDiv = styled.div`
-//   background-color: #FFC7CE;
-//   color: #9C0006;
-//   border-radius: 11px;
-//   padding: 2%;
-//   width: 90%;
-//   margin: auto;
-//   font-size: 1em;
-//   ${mediaQueries("", undefined, "1em")};
-// `
 
 export default class Rsvp extends React.Component {
 
@@ -49,6 +35,9 @@ export default class Rsvp extends React.Component {
 
     this.setState({
       isSubmitting: true,
+      failedLoginAttempt: false,
+      tooManyResults: false,
+      connectionIssue: false,
     });
 
     let guestData;
@@ -67,10 +56,10 @@ export default class Rsvp extends React.Component {
       if (guestData.length > 0) {
         this.setState({
           guestData,
-          isSubmitting: false,
           isLoggedIn: true,
-          tooManyResults: false,
+          isSubmitting: false,
           failedLoginAttempt: false,
+          tooManyResults: false,
           connectionIssue: false,
         });
       }
@@ -79,8 +68,8 @@ export default class Rsvp extends React.Component {
       else if (guestData === -2) {
         this.setState({
           isSubmitting: false,
-          tooManyResults: true,
           failedLoginAttempt: false,
+          tooManyResults: true,
           connectionIssue: false,
         });
       }
@@ -99,7 +88,7 @@ export default class Rsvp extends React.Component {
       console.error(err);
       this.setState({
         isSubmitting: false,
-        successfulUpdate: false,
+        failedLoginAttempt: false,
         tooManyResults: false,
         connectionIssue: true,
       });
@@ -129,7 +118,7 @@ export default class Rsvp extends React.Component {
 
       if (this.state.tooManyResults) {
         componentToRender.push(
-          <StatusMessageDiv key={1} backCo="#FFC7CE" textCo="#9C0006">
+          <StatusMessageDiv key={2} backCo="#FFC7CE" textCo="#9C0006">
             Please be more specific.
           </StatusMessageDiv>
         );
@@ -137,7 +126,7 @@ export default class Rsvp extends React.Component {
 
       if (this.state.failedLoginAttempt) {
         componentToRender.push(
-          <StatusMessageDiv key={1} backCo="#FFC7CE" textCo="#9C0006">
+          <StatusMessageDiv key={3} backCo="#FFC7CE" textCo="#9C0006">
             Couldn't find the guest name.
           </StatusMessageDiv>
         );
@@ -145,7 +134,7 @@ export default class Rsvp extends React.Component {
 
       if (this.state.connectionIssue) {
       componentToRender.push(
-        <StatusMessageDiv key={1} backCo="#FFC7CE" textCo="#9C0006">
+        <StatusMessageDiv key={4} backCo="#FFC7CE" textCo="#9C0006">
           There was an issue retreiving the data, please contact your host to resolve.
         </StatusMessageDiv>
         );
