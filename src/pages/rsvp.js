@@ -1,47 +1,162 @@
 import React from "react"
+import styled from "styled-components"
 
 // Components
-import Layout from "../components/Layout/Layout.js"
-import RsvpMain from "../components/IndexPageSections/Rsvpmain.js"
+import Layout, {layoutDims} from "../components/Layout/Layout.js"
+import RsvpMain, {StatusMessageDiv} from "../components/IndexPageSections/Rsvpmain.js"
 import Login from "../components/Login.js"
 
-// Util
-import { isLoggedIn } from "../services/auth.js"
+// Media Queries
+import mediaQueries, {fontSizes} from "../util/mediaQueries.js"
+
+const headerAndFooterHeights = `
+  ${layoutDims.runnerWidthCssStr} *
+  ${layoutDims.headerImgAR} *
+  ${layoutDims.overlayedHeaderHeightPerc}
+  + ${layoutDims.runnerWidthCssStr} * ${layoutDims.footerImgAR}`
+
+const MinHeightDiv = styled.div`
+  min-height: calc( 99.5vh - (${headerAndFooterHeights}) );
+`
+
+// const ErrorMessageDiv = styled.div`
+//   background-color: #FFC7CE;
+//   color: #9C0006;
+//   border-radius: 11px;
+//   padding: 2%;
+//   width: 90%;
+//   margin: auto;
+//   font-size: 1em;
+//   ${mediaQueries("", undefined, "1em")};
+// `
 
 export default class Rsvp extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: isLoggedIn(),
+      isLoggedIn: false,
+      isSubmitting: false,
+      failedLoginAttempt: false, // Couldn't find the guest name
+      tooManyResults: false, // If the searched name isn't specific enough
+      connectionIssue: false, // failed to fetch
+      guestData: [],
     };
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin() {
-    this.setState( state => {
-      if (state.isLoggedIn === isLoggedIn())
-        return null; // Don't render if the login state didn't change
-      else {
-        return { isLoggedIn: isLoggedIn() };
-      }
+  async handleLogin(guestName) {
+
+    this.setState({
+      isSubmitting: true,
     });
-  }
+
+    let guestData;
+    try {
+      const response = await fetch('http://localhost:3001/guestName', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({searchName: guestName}),
+      });
+
+      guestData = await response.json();
+
+      // The guest exists and the backend returns the party/group for that guest
+      if (guestData.length > 0) {
+        this.setState({
+          guestData,
+          isSubmitting: false,
+          isLoggedIn: true,
+          tooManyResults: false,
+          failedLoginAttempt: false,
+          connectionIssue: false,
+        });
+      }
+
+      // Returned too many matches, alert the user to be more specific
+      else if (guestData === -2) {
+        this.setState({
+          isSubmitting: false,
+          tooManyResults: true,
+          failedLoginAttempt: false,
+          connectionIssue: false,
+        });
+      }
+
+      // The guest couldn't be found
+      else {
+        this.setState({
+          isSubmitting: false,
+          failedLoginAttempt: true,
+          tooManyResults: false,
+          connectionIssue: false,
+        });
+      }
+
+    } catch(err) {
+      console.error(err);
+      this.setState({
+        isSubmitting: false,
+        successfulUpdate: false,
+        tooManyResults: false,
+        connectionIssue: true,
+      });
+      // alert("There was an error fetching the information.");
+    }
+
+  } // handleLogin()
 
 
   render() {
 
     let componentToRender
+    // Pass the group ID to the RsvpMain component
     if (this.state.isLoggedIn) {
-      componentToRender = <RsvpMain />;
+      componentToRender = <RsvpMain guestData={this.state.guestData}/>;
     }
     else {
-      componentToRender = <Login handleLogin={this.handleLogin} />;
-    }
+      componentToRender = [<Login handleLogin={this.handleLogin} key={0}/>];
+
+      if (this.state.isSubmitting) {
+        componentToRender.push(
+          <StatusMessageDiv key={1} backCo="#FFEB9C" textCo="#9C6500">
+            Submitting...
+          </StatusMessageDiv>
+        );
+      }
+
+      if (this.state.tooManyResults) {
+        componentToRender.push(
+          <StatusMessageDiv key={1} backCo="#FFC7CE" textCo="#9C0006">
+            Please be more specific.
+          </StatusMessageDiv>
+        );
+      }
+
+      if (this.state.failedLoginAttempt) {
+        componentToRender.push(
+          <StatusMessageDiv key={1} backCo="#FFC7CE" textCo="#9C0006">
+            Couldn't find the guest name.
+          </StatusMessageDiv>
+        );
+      }
+
+      if (this.state.connectionIssue) {
+      componentToRender.push(
+        <StatusMessageDiv key={1} backCo="#FFC7CE" textCo="#9C0006">
+          There was an issue retreiving the data, please contact your host to resolve.
+        </StatusMessageDiv>
+        );
+      }
+    } // if logged in
 
     return (
       <Layout>
-        {componentToRender}
+        <MinHeightDiv>
+          {componentToRender}
+        </MinHeightDiv>
       </Layout>
     );
   }

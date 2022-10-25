@@ -1,6 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
+// Fonts
+import FontStyles from "../../fonts/FontStyles.js"
+
 // Components
 import GlobalStyle from "../GlobalStyles.js"
 import Navbar from "./Navbar.js"
@@ -183,6 +186,7 @@ const Layout = (props) => {
   return(
     <Background>
       <GlobalStyle />
+      <FontStyles />
 
       <RunnerFlexContainer>
         <FlexSpacer grow="1" shrink="1" basis="auto"/>
@@ -192,7 +196,7 @@ const Layout = (props) => {
             <HeaderImg src={headerImg} alt="Nice Flowers" />
             <HeaderInfoFlexDiv>
               <FlexSpacer grow="1" shrink="1" basis="46%"/>
-              <Names>Brendan & Jacqueline</Names>
+              <Names>Jacqueline & Brendan</Names>
               <FlexSpacer grow="1" shrink="1" />
               <Navbar headings={headingData} />
               {/*<FlexSpacer grow="1" shrink="1" />*/}

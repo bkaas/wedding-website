@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 // Fonts
-import FontStyles from "../fonts/FontStyles.js"
+// import FontStyles from "../fonts/FontStyles.js"
 
 // Components
 import Layout, {headingData} from "../components/Layout/Layout.js"
@@ -51,9 +51,9 @@ const Headings = styled.h2`
 const HomePage = () => {
   return (
     <Layout>
-      <title>Brendan Kaas and Jacqueline Fossenier's Wedding Website</title>
+      <title>Jacqueline Fossenier and Brendan Kaas' Wedding Website</title>
       <div style={{margin: 2 + `em`}}> {/* TODO / temporary styling */}
-        <FontStyles />
+        {/*<FontStyles />*/}
         <WeddingDate>{weddingDate}</WeddingDate>
         <Venue>{venue}</Venue>
       </div>

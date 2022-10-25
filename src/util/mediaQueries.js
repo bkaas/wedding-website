@@ -24,12 +24,18 @@ const fontDownScale = {
 
 function mediaQueries(textType, fontScale = fontDownScale, customFontSize) {
 
+  let localFontSize;
   if (!fontSizes[textType]) {
-    throw new Error(`"${textType}" doesn't exist. Please enter one of ${Object.keys(fontSizes)}`)
+    if (customFontSize === "undefined") {
+      throw new Error(`"${textType}" doesn't exist. Please enter one of ${Object.keys(fontSizes)}`)
+    }
+    else {
+      localFontSize = customFontSize;
+    }
   }
-
-  const localFontSize =
-    typeof customFontSize === "undefined" ? fontSizes[textType] : customFontSize;
+  else {
+    localFontSize = fontSizes[textType];
+  }
 
   const outStr = `
     @media (min-width: 1400px) {

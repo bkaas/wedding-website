@@ -2,36 +2,90 @@ import React from "react"
 import styled from "styled-components"
 
 // Media Queries
-import mediaQueries, {fontSizes} from "../util/mediaQueries.js"
+import mediaQueries from "../util/mediaQueries.js"
 
 const CardBody = styled.div`
   border-radius: 7px;
-  padding: 30px;
-  // display: flex;
-  // flex-flow: row nowrap;
+  padding: 3%;
 `
 
-const GuestGroupTable = styled.table`
-  border: none;
-  margin: 1em;
-  font-family: "Goudy Old Style", serif;
-  // flex: 1 1 auto;
-  width: 100%;
-`;
+const GuestRow = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 2%;
+  padding: 2%;
+  border-radius: 7px;
+`
 
-const NameCell = styled.td`
-  height: 2em;
+const GuestHeading = styled.h3`
   font-size: 1.7em;
   ${mediaQueries("", undefined, "1.7em")}
-`;
-
-const NameCol = styled.th`
-  width: 70%;
+  font-weight: normal;
+  margin: 0 0 0.5em;
 `
 
-  // & td {
-  //   padding: 0.5em;
-  // }
+const RsvpButtonsDiv = styled.div`
+  margin: 2%;
+`
+
+const RsvpInput = styled.input`
+  margin: 2%;
+  cursor: pointer;
+`
+
+const RsvpTextInput = styled.input`
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 90%;
+  border-radius: 7px;
+  border: 1px solid #bbb;
+  color: #313438;
+  font-size: 0.8em;
+  ${mediaQueries("", undefined, "0.8em")};
+
+  &:focus {
+    outline: none;
+    border: 1px solid #556673;
+  }
+
+  &::placeholder {
+    font-style: italic;
+  }
+`
+
+const SubmitButton = styled.input`
+  display: block;
+  margin: 5% auto 0;
+  border: 1px solid #999;
+  border-radius: 7px;
+  padding: 0.5em 1em;
+  font-family: "Goudy Old Style", serif;
+  font-size: 1.2em;
+  ${mediaQueries("", undefined, "1.2em")};
+  cursor: pointer;
+
+  &:active {
+    border-width: 2px 0 0 2px;
+    transform: translateY(2px);
+  }
+
+  &:hover {
+    background-color: #ddd;
+  }
+`
+
+const InputLabel = styled.label`
+  font-size: 1em;
+  ${mediaQueries("", undefined, "1em")}
+  margin: 0 0.5em;
+`
+
+const RadioDiv = styled.div`
+  width: 110%;
+  margin: 5% 0;
+`
 
 /**
 - Handle individual attendance information
@@ -61,54 +115,63 @@ class AttendanceCard extends React.Component {
     // console.log(`Rendering the AttendanceCard`)
     // console.log(this.props)
 
-    return(
-      <>
-        <tr>
-          <NameCell>{this.props.guestData.name}</NameCell>
+    return (
 
-          {/*RSVP Radio Button Input*/}
-          <td rowSpan="2" style={{textAlign: "center"}}>
-            {/*<fieldset>*/}
+      <div>
 
-              <div>
-                <input type="radio"
-                  id="yes" value="yes"
-                  name={this.props.guestData.name}
-                  data-guestidx={this.props.guestIndex}
-                  onChange={this.handleInputChange}
-                  checked={this.props.guestData.rsvp.toLowerCase() === "yes"}/>
-                <label htmlFor="yes">LFGOO</label>
-              </div>
+        <GuestRow>
+          <div>
+            <GuestHeading>{this.props.guestData.name}</GuestHeading>
 
-              <div>
-                <input type="radio"
-                  id="no" value="no"
-                  name={this.props.guestData.name}
-                  data-guestidx={this.props.guestIndex}
-                  onChange={this.handleInputChange}
-                  checked={this.props.guestData.rsvp.toLowerCase() === "no"}/>
-                <label htmlFor="no">Nah</label>
-              </div>
-            {/*</fieldset>*/}
-          </td>
-
-        </tr>
-        <tr>
-          {/*Dietary Restriction Input*/}
-          <td>
-            <label htmlFor="dietaryRestriction">Dietary Restriction: </label>
-            <input type="text" id="dietaryRestriction"
+            <InputLabel htmlFor="dietaryRestriction">Dietary Restriction: </InputLabel>
+            <RsvpTextInput type="text" id="dietaryRestriction"
+              placeholder="Ex: vegetarian, allergies etc."
               value={this.props.guestData.diet}
               data-guestidx={this.props.guestIndex}
               onChange={this.handleInputChange} />
-          </td>
-        </tr>
-      </>
+          </div>
+
+          <RsvpButtonsDiv>
+            <RadioDiv>
+              <RsvpInput type="radio"
+                id="yes" value="yes"
+                name={this.props.guestData.name}
+                data-guestidx={this.props.guestIndex}
+                onChange={this.handleInputChange}
+                checked={this.props.guestData.rsvp.toLowerCase() === "yes"}/>
+              <InputLabel htmlFor="yes">Attending</InputLabel>
+            </RadioDiv>
+
+            <RadioDiv>
+              <RsvpInput type="radio"
+                id="no" value="no"
+                name={this.props.guestData.name}
+                data-guestidx={this.props.guestIndex}
+                onChange={this.handleInputChange}
+                checked={this.props.guestData.rsvp.toLowerCase() === "no"}/>
+              <InputLabel htmlFor="no">Not Attending</InputLabel>
+            </RadioDiv>
+          </RsvpButtonsDiv>
+
+        </GuestRow>
+      </div>
+
     );
   } // render()
 
 } // AttendanceCard class
 
+/**
+* Grouping of guest AttendanceCard child components.
+* Receives the guest data information from the parent component
+* and handles the updates from the AttendanceCard child components
+* Submits results to its parent component.
+* Props:
+*  - guestData: array of objects, each one creates an AttendanceCard
+*    child component
+*  - handleSubmit: function to handle the form submission
+**/
+// Ref: https://reactjs.org/docs/forms.html
 class AttendanceForm extends React.Component {
 
   constructor(props) {
@@ -116,7 +179,7 @@ class AttendanceForm extends React.Component {
     this.state = {guestData: props.guestData};
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -146,7 +209,8 @@ class AttendanceForm extends React.Component {
     // Update the correct guestData index corresponding to the
     // correct guest.
     this.setState((prevState) => {
-      console.log(`Previous State: ${prevState.guestData[guestIdx][guestDataProp]}`)
+      /* Debug */
+      // console.log(`Previous State: ${prevState.guestData[guestIdx][guestDataProp]}`)
       prevState.guestData[guestIdx][guestDataProp] = element.value;
       return ({
         guestData: prevState.guestData,
@@ -154,6 +218,15 @@ class AttendanceForm extends React.Component {
     });
 
   } // handleChange()
+
+  /**
+  * Pass this submit logic to the parent component
+  **/
+  async handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.guestData);
+    this.props.handleSubmit(this.state.guestData);
+  } // handleSubmit()
 
   render() {
 
@@ -167,29 +240,12 @@ class AttendanceForm extends React.Component {
     })
 
     return(
-      <CardBody>
-
-        <form onSubmit={this.handleSubmit}>
-          <GuestGroupTable>
-            <thead>
-              <tr>
-                <NameCol />
-                <th>Attending?</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {/*<AttendanceCard guestData={guestData} />*/}
-              {cards}
-
-            </tbody>
-          </GuestGroupTable>
-
-          <input type="submit" value="Submit" />
-        </form>
-
-
-      </CardBody>
+      <form onSubmit={this.handleSubmit}>
+        <CardBody>
+          {cards}
+          <SubmitButton type="submit" value="Save Changes" />
+        </CardBody>
+      </form>
     );
   } // render()
 
