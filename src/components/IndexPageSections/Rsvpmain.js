@@ -51,7 +51,7 @@ class RsvpMain extends React.Component {
     });
 
     try {
-      const response = await fetch('http://localhost:3001/rsvp', {
+      const response = await fetch('/api/rsvp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

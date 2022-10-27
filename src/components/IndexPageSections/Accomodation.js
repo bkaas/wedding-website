@@ -45,12 +45,9 @@ const StyledIframe = styled.iframe`
   margin: 1em
 `;
 
-const Accomodation = (props) => {
 
-  return (
-    <Section headingRef={props.headingRef} name={headingName}>
-      <StyledInfoContainer>
-        <p>
+/*
+Commented out the content for now:
           A block of hotel rooms are reserved at the
           Cambridge Hotel and Conference Centre at a
           discounted rate.
@@ -58,6 +55,15 @@ const Accomodation = (props) => {
           {HotelPhone} or email {HotelEmail} and quote the
           following group name: "Fossenier & Kaas Wedding"
           Note about block expiry
+*/
+
+const Accomodation = (props) => {
+
+  return (
+    <Section headingRef={props.headingRef} name={headingName}>
+      <StyledInfoContainer>
+        <p>
+          Accomodations information coming very soon!
         </p>
       </StyledInfoContainer>
       <StyledIframe

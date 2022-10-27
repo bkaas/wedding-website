@@ -42,7 +42,7 @@ export default class Rsvp extends React.Component {
 
     let guestData;
     try {
-      const response = await fetch('http://localhost:3001/guestName', {
+      const response = await fetch('/api/guestName', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
