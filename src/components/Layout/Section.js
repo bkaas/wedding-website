@@ -13,7 +13,7 @@ import styled from "styled-components"
 import mediaQueries, {fontSizes} from "../../util/mediaQueries.js"
 
 const SectionWrapper = styled.div`
-  margin: 5em 1em;
+  margin: 6% 1%;
 `
 
 const SectionContentContainer = styled.div`

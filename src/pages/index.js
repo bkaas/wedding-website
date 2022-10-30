@@ -49,7 +49,7 @@ const HomePage = () => {
   return (
     <Layout>
       <title>Jacqueline Fossenier and Brendan Kaas' Wedding Website</title>
-      <div style={{margin: 2 + `em`}}> {/* TODO / temporary styling */}
+      <div>
         {/*<FontStyles />*/}
         <WeddingDate>{weddingDate}</WeddingDate>
         <Venue>{venue}</Venue>
