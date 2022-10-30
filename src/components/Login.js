@@ -70,6 +70,7 @@ const SubmitButton = styled.input`
 const GuestNameLabel = styled.label`
   font-size: 1em;
   ${mediaQueries("", undefined, "1em")};
+  text-align: center;
 `
 
 export default class Login extends React.Component {

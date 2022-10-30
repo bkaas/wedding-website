@@ -11,9 +11,10 @@ import mediaQueries, {fontSizes} from "../../util/mediaQueries.js"
 
 const headingName = "Accommodations";
 
-const HotelPhone = <a href="tel:1-866-622-1505">1-866-622-1505</a>;
-const HotelEmail = <a href="mailto:res@Cambridgehotel.ca">res@Cambridgehotel.ca</a>;
-
+const CambridgeHotelPhone = <a href="tel:1-866-622-1505">1-866-622-1505</a>;
+const CambridgeHotelEmail = <a href="mailto:res@Cambridgehotel.ca">res@Cambridgehotel.ca</a>;
+const HiltonWebsite = <a href="https://group.hiltongardeninn.com/sr4yhw">booking link</a>
+const HiltonPhone = <a href="tel:519-620-8936">519-620-8936</a>;
 
 const StyledInfoContainer = styled.div`
   // max-width: 40%;
@@ -56,25 +57,16 @@ const IndentedText = styled.span`
 `
 
 // Hotel header
-const hotelHeader = `We've reserved a block of rooms with preferred
+const hotelHeader = `We have reserved a block of rooms with preferred
 rates at two hotels in close proximity to each other (200m). A shuttle
 bus will transport guests from each hotel to the Cambridge Mill for
 the wedding ceremony, and back to each hotel at the end of the evening.
 Please see the above section for shuttle times.`;
 
 const blockExpiry = `Please note the hotel blocks and their preferred
-rates will only be held until January 24th 2023.`;
+rates will only be held until January 24th, 2023.`;
 
-/*
-Commented out the content for now:
-          A block of hotel rooms are reserved at the
-          Cambridge Hotel and Conference Centre at a
-          discounted rate.
-          To reserve a room, please contact the hotel at
-          {HotelPhone} or email {HotelEmail} and quote the
-          following group name: "Fossenier & Kaas Wedding"
-          Note about block expiry
-*/
+
 
 // Shuttle times
 // 11, 12, 1230, 115
@@ -92,17 +84,17 @@ const Accomodation = (props) => {
           Cambridge Hotel and Conference Centre
           <LineBreak/>
           <IndentedText>
-            Reservation:<br/>
-            To reserve a room, please contact the hotel by phone
-            at {HotelPhone} or email {HotelEmail} and quote the
-            following group name: "Fossenier & Kaas Wedding"
+            Reservations can be made by contacting the hotel by phone
+            at {CambridgeHotelPhone} or email {CambridgeHotelEmail} and
+            quoting the following group name: "Fossenier & Kaas Wedding"
           </IndentedText>
           <LineBreak/>
           Hilton Garden Inn
           <LineBreak/>
           <IndentedText>
-            Reservation:<br/>
-
+            Reservations can be made through the {HiltonWebsite} or by phone
+            at {HiltonPhone} and quoting the following group name: "Fossenier
+            Kaas Wedding"
           </IndentedText>
         </StyledParagraph>
       </StyledInfoContainer>
