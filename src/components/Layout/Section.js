@@ -21,10 +21,14 @@ const SectionContentContainer = styled.div`
   flex-flow: row;
   justify-content: space-evenly;
   align-items: center;
-  margin: 1em;
+  margin: 1em 0;
 
   & * {
     // margin: 1em;
+  }
+
+  @media (max-width: 1000px) {
+    flex-wrap: wrap;
   }
 
 `
@@ -33,7 +37,7 @@ const Heading = styled.h2`
   font-family: "Goudy Old Style", serif;
   font-weight: normal;
   font-size: ${fontSizes["names"]};
-  margin: 0 1em 1em;
+  margin: 0 2% 2%;
 
   ${mediaQueries("names")}
 `;

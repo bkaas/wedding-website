@@ -14,7 +14,7 @@ const LoginFormOuterDiv = styled.div`
 `
 
 const LoginFormDiv = styled.div`
-  margin: 10%;
+  margin-bottom: 5%;
 
   display: flex;
   flex-flow: row wrap;

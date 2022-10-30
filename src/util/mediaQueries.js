@@ -11,7 +11,7 @@ export const fontSizes = {
   names: "2.5em",
   date: "1.75em",
   info: "2em",
-  content: "1.4em",
+  content: "1.1em",
 };
 
 const fontDownScale = {

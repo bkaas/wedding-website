@@ -69,7 +69,8 @@ const headerImgH = `${currentRunnerWidth} * ${headerImgAR}`;
 // Set the scroll stop position (sticky top)
 // Probably not necessary anymore since I decided to keep the
 // full image height. Position: fixed might make more sense.
-const stickyTop = `${headerImgH} * 0`;
+const stickyPerc = 0.3;
+const stickyTop = `${headerImgH} * -${stickyPerc}`;
 
 // Percentage of the header image height that will cover the
 // webpage content (ie. marking the top of the page)
@@ -91,12 +92,13 @@ export const layoutDims = {
   minRunnerWidthPX,
   headerImgAR,
   overlayedHeaderHeightPerc,
+  stickyPerc,
   calcTop(viewportWidthPx) {
     return(
       Math.max(
         Math.min(viewportWidthPx * this.runnerWidthVW / 100, this.maxRunnerWidthPX),
         this.minRunnerWidthPX
-      ) * this.headerImgAR * this.overlayedHeaderHeightPerc
+      ) * this.headerImgAR * (this.overlayedHeaderHeightPerc - this.stickyPerc)
     );
   },
   runnerWidthCssStr: currentRunnerWidth,
@@ -108,11 +110,11 @@ export const layoutDims = {
 // Enables a chosen point in the height of the image where the
 // content will dissapear when scrolling
 const HeaderContainerBackground = styled(HeaderContainer)`
-  height: calc( ${headerImgH} );
   z-index: -1;
-  position: fixed;
-  top: 0;
+  position: sticky;
+  top: calc( ${stickyTop} + ${headerImgH} * ${overlayedHeaderHeightPerc} );
   width: ${currentRunnerWidth};
+  height: calc( ${headerImgH} * ${1 - overlayedHeaderHeightPerc});
 `
 
 // Need to use an img element because setting the background-image
@@ -128,6 +130,15 @@ const HeaderImg = styled.img`
   z-index: -1;
   position: absolute;
 `;
+
+/*
+Need to crop the second image (z-index: -1) from the bottom
+It's position: sticky which means it is following the flow of the document
+until it sticks
+*/
+const HeaderImgCropped = styled(HeaderImg)`
+  margin-top: calc( ${headerImgH} * ${-overlayedHeaderHeightPerc});
+`
 
 // Flex div for the header content
 // Essentially overlayed on top of the parent div
@@ -202,8 +213,9 @@ const Layout = (props) => {
               {/*<FlexSpacer grow="1" shrink="1" />*/}
             </HeaderInfoFlexDiv>
           </HeaderContainer>
+
           <HeaderContainerBackground>
-            <HeaderImg src={headerImg} alt="Nice Flowers" />
+            <HeaderImgCropped src={headerImg} alt="Nice Flowers" />
           </HeaderContainerBackground>
 
           <main>

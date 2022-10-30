@@ -82,6 +82,10 @@ const scheduleDisplayList = schedule.map( (value, index) => {
 const StyledImg = styled.img`
   width: 38%;
   margin: 1em;
+
+  @media (max-width: 1000px) {
+    width: 75%;
+  }
 `
 
 const TheDay = (props) => {

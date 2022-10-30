@@ -2,9 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import { navigate } from "gatsby"
 
-// Components
-import FlexSpacer from "./FlexSpacer.js"
-
 // Fonts
 // import FontStyles from "../../fonts/FontStyles.js"
 
