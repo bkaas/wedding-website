@@ -4,7 +4,7 @@ import React from "react"
 import styled from "styled-components"
 
 // Media Queries
-import mediaQueries, {fontSizes} from "../util/mediaQueries.js"
+import mediaQueries from "../util/mediaQueries.js"
 
 const LoginFormOuterDiv = styled.div`
   display: flex;
@@ -55,6 +55,7 @@ const SubmitButton = styled.input`
   font-size: 1em;
   ${mediaQueries("", undefined, "1em")};
   cursor: pointer;
+  background-color: #eee;
 
   &:active {
     border-width: 2px 0 0 2px;
