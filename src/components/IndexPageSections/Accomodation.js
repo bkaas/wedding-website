@@ -1,10 +1,11 @@
-// The Day Component
+// Accomodation Component
 
 import React from "react"
 import styled from "styled-components"
 
 // Components
 import Section from "../Layout/Section.js"
+import { LineBreak, IndentedText } from "../Layout/textformat.js"
 
 // Util
 import mediaQueries, {fontSizes} from "../../util/mediaQueries.js"
@@ -47,15 +48,6 @@ const StyledParagraph = styled.p`
   line-height: 1.3;
 `
 
-const LineBreak = styled.span`
-  display: block;
-  margin-bottom: 1em;
-`
-const IndentedText = styled.span`
-  display: block;
-  margin-left: 3%;
-`
-
 // Hotel header
 const hotelHeader = `We have reserved a block of rooms with preferred
 rates at two hotels in close proximity to each other (200m). A shuttle
@@ -74,7 +66,7 @@ rates will only be held until January 24th, 2023.`;
 const Accomodation = (props) => {
 
   return (
-    <Section headingRef={props.headingRef} name={headingName}>
+    <Section headingRef={props.headingRef} name={props.headingName}>
       <StyledInfoContainer>
         <StyledParagraph>
           {hotelHeader}

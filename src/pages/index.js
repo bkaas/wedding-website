@@ -3,9 +3,9 @@ import styled from "styled-components"
 
 // Components
 import Layout, {headingData} from "../components/Layout/Layout.js"
-import Section from "../components/Layout/Section.js"
 import TheDay from "../components/IndexPageSections/TheDay.js"
 import Accomodation from "../components/IndexPageSections/Accomodation.js"
+import Faq from "../components/IndexPageSections/Faq.js"
 
 // Media Queries
 import mediaQueries, {fontSizes} from "../util/mediaQueries.js"
@@ -62,7 +62,7 @@ const HomePage = () => {
       {/*<Section headingRef={headingData[1].ref} name={headingData[1].name}></Section>*/}
       {/*<Section headingRef={headingData[2].ref} name={headingData[2].name}></Section>*/}
       <Accomodation headingRef={headingData[2].ref} headingName={headingData[2].name}/>
-      <Section headingRef={headingData[3].ref} name={headingData[3].name}/>
+      <Faq headingRef={headingData[3].ref} headingName={headingData[3].name}/>
     </Layout>
   )
 }
