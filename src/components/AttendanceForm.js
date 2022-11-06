@@ -161,6 +161,36 @@ class AttendanceCard extends React.Component {
 
 } // AttendanceCard class
 
+/*
+Song input component
+*/
+class SongInput extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    // event.preventDefault();
+    this.props.handleInputChange(event.target);
+  }
+
+  render() {
+    return (
+      <>
+      <InputLabel htmlFor="song">Song Input: </InputLabel>
+      <RsvpTextInput type="text" id="song"
+        placeholder="Ex: "
+        value={this.props.guestData.song}
+        data-guestidx={this.props.guestIndex}
+        onChange={this.handleInputChange} />
+      </>
+    );
+  } // render
+}
+
 /**
 * Grouping of guest AttendanceCard child components.
 * Receives the guest data information from the parent component
@@ -199,8 +229,23 @@ class AttendanceForm extends React.Component {
 
     // Check whether the event was generated from the dietary
     // restriction input or the rsvp radio button
-    const guestDataProp = element.id === "dietaryRestriction" ?
-      "diet" : "rsvp";
+    let guestDataProp;
+    switch (element.id) {
+      case "dietaryRestriction":
+        guestDataProp = "diet";
+        break;
+      case "yes":
+      case "no":
+        guestDataProp = "rsvp";
+        break;
+      case "song":
+        guestDataProp = "song";
+        break;
+      default:
+        guestDataProp = "";
+        console.error("Handle change in the attendance form did not return an expected result.");
+        return;
+    }
 
     /* Debug */
     // console.log(`Guest Index: ${guestIdx}`)
@@ -230,19 +275,38 @@ class AttendanceForm extends React.Component {
 
   render() {
 
+    // Save the guest index that has a song listed in the map function below
+    let indexOfGuestWithStoredSong;
+
     const cards = this.state.guestData.map((guestInfo, ind) => {
+      // Mark the guest that has the song assigned to them
+      if (guestInfo.song.length > 0) {
+        indexOfGuestWithStoredSong = ind;
+      }
+
       // Supply a guestIndex to each AttendanceCard so we know which one was
       // updated by the user
       return(
         <AttendanceCard key={ind} guestData={guestInfo}
           guestIndex={ind} handleInputChange={this.handleChange} />
       );
-    })
+    });
+
+    // Check if any of the guests in the group have a song listed
+    // If not, set it to the first guest in the list
+    if (indexOfGuestWithStoredSong === undefined) {
+      indexOfGuestWithStoredSong = 0;
+    }
 
     return(
       <form onSubmit={this.handleSubmit}>
         <CardBody>
           {cards}
+          <SongInput
+            guestIndex={indexOfGuestWithStoredSong}
+            guestData={this.state.guestData[indexOfGuestWithStoredSong]}
+            handleInputChange={this.handleChange}
+          />
           <SubmitButton type="submit" value="Save Changes" />
         </CardBody>
       </form>
