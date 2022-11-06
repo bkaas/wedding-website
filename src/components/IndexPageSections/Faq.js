@@ -36,7 +36,7 @@ const faqText = [{
   answer: `The ceremony will start at 2:30 pm. We suggest arriving by 2:15 pm.
     You are welcome to sit on either side of the aisle. Reserved seating
     will be marked. There are shuttle buses from the Cambridge Hotel and
-    Hilton Hotels. The shuttles will be arrive at the Cambridge Mill at 1:45 pm
+    Hilton Hotels. The shuttles will arrive at the Cambridge Mill at 1:45 pm
     and 2:15 pm.`,
 },
 {
@@ -68,14 +68,14 @@ const faqText = [{
   question: `Accessibility?`,
   answer: `The Cambridge Mill has a large ramp from the parking lot to the ceremony space,
     The Pavilion. There is a short outdoor walk between the ceremony space and the reception
-    space at the main building (about 60 m) on a patio walkway that is maintained by the
+    space at the main building (about 60 m) on a walkway that is maintained by the
     Cambridge Mill staff. Inside the main building, there are elevators to take you up one floor
     to the Falls Room reception space. The Cambridge Mill staff will assist with directions.`,
 },
 {
   question: `Will transportation be provided between to/from the hotel?`,
   answer: `Yes! Shuttle buses will transport guests to the Cambridge Mill from the
-    Cambridge Hotel and Hilton hotels. The shuttles will leave at 1:30 p.m. and 2:00 p.m.
+    Cambridge Hotel and Hilton Hotel. The shuttles will leave at 1:30 p.m. and 2:00 p.m.
     At the end of the night, shuttles will leave the venue at 11:00 p.m., 12:00 p.m.,
     12:30 p.m., 1:15 a.m.`,
 },
@@ -86,7 +86,7 @@ const faqText = [{
 },
 {
   question: `Can I bring a gift?`,
-  answer: `Gifts are not required but monetary gifts are appreciated.`,
+  answer: `Gifts are not necessary but monetary gifts are appreciated.`,
 },
 {
   question: `Are vegan/vegetarian options provided?`,

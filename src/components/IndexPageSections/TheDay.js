@@ -21,7 +21,7 @@ const schedule = [
   event    : "Wedding Ceremony",
   location : "Cambridge Mill - Pavilion",
   time     : "2:30 pm",
-  notes    : "Shuttle bus hotel departure at 1:30 p.m. and 2:00 p.m.",
+  notes    : "Shuttle Bus - Hotel departure at 1:30 p.m. and 2:00 p.m.",
 },
 {
   event    : "Cocktail Hour",
@@ -32,7 +32,7 @@ const schedule = [
   event    : "Dinner and Dance",
   location : "Cambridge Mill - Falls Room",
   time     : "5:00 pm - 1:00 am",
-  notes    : "Shuttle bus venue departure at 11:00 p.m., 12:00 p.m., 12:30 p.m., 1:15 a.m.",
+  notes    : "Shuttle Bus - Venue departure at 11:00 p.m., 12:00 p.m., 12:30 p.m., 1:15 a.m.",
 }
 ]
 

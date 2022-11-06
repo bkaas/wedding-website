@@ -10,39 +10,31 @@ import { LineBreak, IndentedText } from "../Layout/textformat.js"
 // Util
 import mediaQueries, {fontSizes} from "../../util/mediaQueries.js"
 
-const headingName = "Accommodations";
-
 const CambridgeHotelPhone = <a href="tel:1-866-622-1505">1-866-622-1505</a>;
 const CambridgeHotelEmail = <a href="mailto:res@Cambridgehotel.ca">res@Cambridgehotel.ca</a>;
 const HiltonWebsite = <a href="https://group.hiltongardeninn.com/sr4yhw">booking link</a>
 const HiltonPhone = <a href="tel:519-620-8936">519-620-8936</a>;
 
 const StyledInfoContainer = styled.div`
-  // max-width: 40%;
-  margin-left: 2%;
-  margin-bottom: 2%;
+  margin: 0 8% 5%;
 
   & p {
-    // text-align: center;
     font-family: "Goudy Old Style", serif;
     font-size: ${fontSizes["content"]};
-    // margin: 0.25em 0;
 
     ${mediaQueries("content")}
   }
-
-  // & a {
-  //   font-size: ${fontSizes["content"]};
-  //   ${mediaQueries("content")}
-  // }
 `
 
+// Old for the map insert
+/*
 const StyledIframe = styled.iframe`
   border: none;
   width: 40%;
   height: 31vw;
   margin: 1em
 `;
+*/
 
 const StyledParagraph = styled.p`
   line-height: 1.3;
@@ -73,7 +65,9 @@ const Accomodation = (props) => {
           <br />
           {blockExpiry}
           <LineBreak/>
-          Cambridge Hotel and Conference Centre
+          <a href="https://goo.gl/maps/K1kxcGrSHtUaXcuA6">
+            Cambridge Hotel and Conference Centre
+          </a>
           <LineBreak/>
           <IndentedText>
             Reservations can be made by contacting the hotel by phone
@@ -81,7 +75,9 @@ const Accomodation = (props) => {
             quoting the following group name: "Fossenier & Kaas Wedding"
           </IndentedText>
           <LineBreak/>
-          Hilton Garden Inn
+          <a href="https://goo.gl/maps/ZnRq6PcFUQ3tVJMe8">
+            Hilton Garden Inn
+          </a>
           <LineBreak/>
           <IndentedText>
             Reservations can be made through the {HiltonWebsite} or by phone
@@ -90,13 +86,13 @@ const Accomodation = (props) => {
           </IndentedText>
         </StyledParagraph>
       </StyledInfoContainer>
-      <StyledIframe
+      {/*<StyledIframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2898.454802309356!2d-80.33111398410675!3d43.40932357618367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b89ae1882310f%3A0x8ec78be14ba61339!2sCambridge%20Hotel%20and%20Conference%20Centre!5e0!3m2!1sen!2sca!4v1661539311386!5m2!1sen!2sca"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       >
-      </StyledIframe>
+      </StyledIframe>*/}
     </Section>
   )
 
