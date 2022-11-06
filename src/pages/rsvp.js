@@ -50,6 +50,17 @@ export default class Rsvp extends React.Component {
         body: JSON.stringify({searchName: guestName}),
       });
 
+      // Error on the server side caught by the server error handler
+      if (response.status === 500) {
+        this.setState({
+          isSubmitting: false,
+          failedLoginAttempt: false,
+          tooManyResults: false,
+          connectionIssue: true,
+        });
+        return;
+      }
+
       guestData = await response.json();
 
       // The guest exists and the backend returns the party/group for that guest

@@ -59,6 +59,15 @@ class RsvpMain extends React.Component {
         body: JSON.stringify({guestData: guestData}),
       });
 
+      // Error on the server side caught by the server error handler
+      if (response.status === 500) {
+        this.setState({
+          isSubmitting: false,
+          successfulUpdate: false,
+        });
+        return;
+      }
+
       const status = await response.json();
 
       if (status) {
