@@ -173,7 +173,8 @@ const Names = styled.h1`
 `;
 
 // Create a ref to the headings
-export const headingData = [{
+export const headingData = [
+  {
     "name": "Home", // handled on the anchor onClick to scroll to the top
   },
   {

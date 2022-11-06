@@ -180,9 +180,11 @@ class SongInput extends React.Component {
   render() {
     return (
       <>
-      <InputLabel htmlFor="song">Song Input: </InputLabel>
+      <InputLabel htmlFor="song">
+        If this song comes on, we'll see your best moves on the dance floor!
+      </InputLabel>
       <RsvpTextInput type="text" id="song"
-        placeholder="Ex: "
+        placeholder="Enter song name"
         value={this.props.guestData.song}
         data-guestidx={this.props.guestIndex}
         onChange={this.handleInputChange} />

@@ -13,32 +13,29 @@ import mediaQueries, {fontSizes} from "../../util/mediaQueries.js"
 import mill from "../../images/CambridgeMillPic.jpg"
 
 
-const headingName = "The Day";
-
 // const info = `Our wedding day is going to be so amazing.
 // The timing breakdown will be all right here!`
 
 const schedule = [
 {
-  event : "Wedding Ceremony",
+  event    : "Wedding Ceremony",
   location : "Cambridge Mill - Pavilion",
-  time  : "2:30 pm",
+  time     : "2:30 pm",
+  notes    : "Shuttle bus hotel departure at 1:30 p.m. and 2:00 p.m.",
 },
 {
-  event : "Cocktail Hour",
+  event    : "Cocktail Hour",
   location : "Cambridge Mill - Falls Room Solarium",
-  time  : "3:00 pm - 4:30 pm",
+  time     : "3:00 pm - 4:30 pm",
 },
 {
-  event : "Dinner and Dance",
+  event    : "Dinner and Dance",
   location : "Cambridge Mill - Falls Room",
-  time  : "5:00 pm - 1:00 am",
+  time     : "5:00 pm - 1:00 am",
+  notes    : "Shuttle bus venue departure at 11:00 p.m., 12:00 p.m., 12:30 p.m., 1:15 a.m.",
 }
 ]
 
-const StyledScheduleList = styled.ul`
-  list-style-type: none;
-`
 
 const StyledScheduleTable = styled.table`
   border: none;
@@ -54,16 +51,6 @@ const StyledScheduleTable = styled.table`
 
 `;
 
-const ScheduleEntryFlexContainer = styled.ul`
-  display: flex;
-  flex-flow: row wrap;
-  list-style-type: none;
-`
-
-const ScheduleEntry = styled.li`
-  flex: 1 1 auto;
-`
-
 const TimeData = styled.td`
   text-align: center;
 `
@@ -73,7 +60,7 @@ const scheduleDisplayList = schedule.map( (value, index) => {
   return(
     <tr key={index}>
       <TimeData>{value.time}</TimeData>
-      <td>{value.event} <br/> <em>{value.location}</em></td>
+      <td>{value.event} <br/> <em>{value.location}</em> <br/>{value.notes}</td>
     </tr>
   );
 
