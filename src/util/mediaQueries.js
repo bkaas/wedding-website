@@ -19,12 +19,13 @@ const fontDownScale = {
   px900: 0.9,
   px768: 0.75,
   px640: 0.62,
-  px380: 0.45
+  px380: 0.45,
 };
 
 function mediaQueries(textType, fontScale = fontDownScale, customFontSize) {
 
   let localFontSize;
+  let fontDownScaleAlpha = 1; // scaling factor to the font down scale factor
   if (!fontSizes[textType]) {
     if (customFontSize === "undefined") {
       throw new Error(`"${textType}" doesn't exist. Please enter one of ${Object.keys(fontSizes)}`)
@@ -35,6 +36,10 @@ function mediaQueries(textType, fontScale = fontDownScale, customFontSize) {
   }
   else {
     localFontSize = fontSizes[textType];
+    // Don't downscale the content as much
+    if (textType === "content") {
+      fontDownScaleAlpha = 1.3;
+    }
   }
 
   const outStr = `
@@ -43,19 +48,19 @@ function mediaQueries(textType, fontScale = fontDownScale, customFontSize) {
     }
 
     @media (max-width: 900px) {
-      font-size: calc(${localFontSize} * ${fontScale["px900"]});
+      font-size: calc(${localFontSize} * ${fontScale["px900"] * fontDownScaleAlpha});
     }
 
     @media (max-width: 768px) {
-      font-size: calc(${localFontSize} * ${fontScale["px768"]});
+      font-size: calc(${localFontSize} * ${fontScale["px768"] * fontDownScaleAlpha});
     }
 
     @media (max-width: 640px) {
-      font-size: calc(${localFontSize} * ${fontScale["px640"]});
+      font-size: calc(${localFontSize} * ${fontScale["px640"] * fontDownScaleAlpha});
     }
 
     @media (max-width: 380px) {
-      font-size: calc(${localFontSize} * ${fontScale["px380"]});
+      font-size: calc(${localFontSize} * ${fontScale["px380"] * fontDownScaleAlpha});
     }`;
 
   return outStr;
