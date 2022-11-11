@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Helmet } from "react-helmet"
 
 // Fonts
 import FontStyles from "../../fonts/FontStyles.js"
@@ -197,6 +198,9 @@ export const headingData = [
 const Layout = (props) => {
   return(
     <Background>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <GlobalStyle />
       <FontStyles />
 
